@@ -1,0 +1,80 @@
+# ============================================================
+# VISUAL STUDIO
+# ============================================================
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ============================================================
+# BUILD RESULTS
+# ============================================================
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+build/
+dist/
+
+# ============================================================
+# CLIENT (Vite + React + TypeScript)
+# ============================================================
+client/node_modules/
+client/app/node_modules/
+client/app/.env
+client/app/.env.local
+client/app/.env.production
+client/app/dist/
+client/app/build/
+client/app/src/test/        
+client/src/test/ 
+
+# ============================================================
+# SERVER (Clean Architecture - .NET)
+# ============================================================
+
+# App Settings (sensitive configs)
+server/ITSMS.API/appsettings.json
+server/ITSMS.API/appsettings.Development.json
+server/ITSMS.API/appsettings.Production.json
+server/ITSMS.API/Properties/launchSettings.json
+
+# ITSMS.API
+server/ITSMS.API/bin/
+server/ITSMS.API/obj/
+
+# ITSMS.Application
+server/ITSMS.Application/bin/
+server/ITSMS.Application/obj/
+
+# ITSMS.Domain
+server/ITSMS.Domain/bin/
+server/ITSMS.Domain/obj/
+
+# ITSMS.Persistence
+server/ITSMS.Persistence/bin/
+server/ITSMS.Persistence/obj/
+
+# ITSMSAuthentication.JWT
+server/ITSMSAuthentication.JWT/bin/
+server/ITSMSAuthentication.JWT/obj/
+
+# ITSMS.Test
+server/ITSMS.Test/
+server/ITSMS.Test/bin/
+server/ITSMS.Test/obj/
+
+# ============================================================
+# IDE FOLDERS (all projects)
+# ============================================================
+**/.vs/
+**/.vscode/
+**/.idea/
+
+# ============================================================
+# OS FILES
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,56 @@
+import { Card, CardContent } from '@/components/ui/card'
+import React from 'react'
+
+
+interface summaryCardProps {
+    label: string,
+    value: number,
+    description: string,
+    icon: React.ReactElement,
+    textColor: string,
+    bgColor: string,
+    leftBorderColor: string,
+}
+
+
+const EmployeeSummaryCard: React.FC<{card: summaryCardProps}> = ({ card }) => {
+    return (
+        <Card
+            className="group relative overflow-hidden rounded-xl bg-white border border-slate-200/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-slate-300 hover:-translate-y-1"
+        >
+            {/* Dynamic Left Accent Bar */}
+            <div className={`absolute top-0 bottom-0 left-0 w-1 ${card.leftBorderColor}`} />
+
+            <CardContent className="p-4 md:p-6 flex items-center">
+                {/* Left Side: Soft Container Icon */}
+                <div className={`mr-4 md:mr-5 flex shrink-0 h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl bg-opacity-70 ${card.bgColor} transition-transform duration-500 group-hover:scale-110`}>
+                    <div className={`${card.textColor}`}>
+                        {card.icon}
+                    </div>
+                </div>
+
+                {/* Right Side: Data */}
+                <div className="flex flex-col flex-1 overflow-hidden">
+                    <p className="text-xs sm:text-sm font-semibold tracking-widest text-slate-500 uppercase truncate">
+                        {card.label}
+                    </p>
+                    <div className="flex items-baseline gap-2 mt-1">
+                        <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 group-hover:text-slate-700 transition-colors">
+                            {card.value !== undefined ? card.value : <span className="opacity-20">--</span>}
+                        </h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-400 mt-1 truncate group-hover:text-slate-500 transition-colors">
+                        {card.description}
+                    </p>
+                </div>
+
+                {/* Decorative Background Icon */}
+                <div className={`absolute -right-2 -bottom-2 opacity-[0.03] transform scale-150 rotate-12 transition-transform duration-700 group-hover:rotate-0 ${card.textColor} pointer-events-none`}>
+                    {card.icon}
+                </div>
+            </CardContent>
+        </Card>
+    )
+}
+
+export default EmployeeSummaryCard
