@@ -56,9 +56,9 @@ const ClientTable: React.FC<clientTableProps> = ({ data, emptyText = "No records
 
     return (
         <>
-            <div className="max-h-115 overflow-y-auto rounded-cmd border border-slate-200 bg-white shadow-sm">
-                <Table>
-                    <TableHeader className="bg-slate-50/50">
+            <div className="max-h-115 overflow-y-auto rounded-md shadow-sm">
+                <Table className='border border-border'>
+                    <TableHeader>
                         <TableRow className="hover:bg-transparent">
                             <TableHead className="h-12 text-center align-middle font-semibold text-primary uppercase tracking-wider">
                                 Company Name
@@ -114,37 +114,37 @@ const ClientTable: React.FC<clientTableProps> = ({ data, emptyText = "No records
                                 return (
                                     <TableRow
                                         key={c.clientId}
-                                        className="group border-b transition-colors hover:bg-slate-50/80 data-[state=selected]:bg-slate-100"
+                                        className="group border-b "
                                     >
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.companyName ?? "-"}
                                         </TableCell>
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.clientName ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.addressLine1 ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.contactNumber ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.country ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.state ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.city ?? "-"}
                                         </TableCell>
 
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.zip ?? "-"}
                                         </TableCell>
 
@@ -162,7 +162,7 @@ const ClientTable: React.FC<clientTableProps> = ({ data, emptyText = "No records
 
                                         <TableCell className="p-4 text-center text-sm">
                                             <ToolTips children={
-                                                <Button variant='link' className='hover:cursor-pointer hover:text-secondary'
+                                                <Button variant='link' className='hover:cursor-pointer '
                                                     onClick={() => { statusSetOpen(true); setSelectID(c.clientId as string); setStatus(!c.isActive); }}
                                                 >
                                                     {
@@ -177,7 +177,7 @@ const ClientTable: React.FC<clientTableProps> = ({ data, emptyText = "No records
                                             <ToolTips children={
                                                 <Button
                                                     variant="link"
-                                                    className="hover:cursor-pointer hover:text-secondary"
+                                                    className="hover:cursor-pointer"
                                                     onClick={() => onOpenUpdate(c.clientId as string)}
                                                 >
                                                     <Icon name="update" width={18} height={18} />
@@ -188,7 +188,7 @@ const ClientTable: React.FC<clientTableProps> = ({ data, emptyText = "No records
                                             <ToolTips children={
                                                 <Button
                                                     variant="link"
-                                                    className="hover:cursor-pointer hover:text-secondary"
+                                                    className="hover:cursor-pointer"
                                                     onClick={() => {
                                                         setOepn(true)
                                                         setSelectID(c.clientId as string)
@@ -204,7 +204,7 @@ const ClientTable: React.FC<clientTableProps> = ({ data, emptyText = "No records
                             })
                         ) : (
                             <TableRow>
-                                <TableCell colSpan={10} className="h-32 text-center text-slate-500">
+                                <TableCell colSpan={11} className="h-32 text-center">
                                     <p className="font-medium">{emptyText || "No results found."}</p>
                                 </TableCell>
                             </TableRow>

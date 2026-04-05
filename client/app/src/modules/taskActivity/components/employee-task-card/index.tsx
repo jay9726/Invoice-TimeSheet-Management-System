@@ -49,10 +49,10 @@ const EmployeeTaskActivityCard: React.FC<taskActivityProps> = ({ taskActivity, c
                     <div className='flex flex-col gap-1'>
                         <h4 className="font-semibold">{taskActivity.taskName}</h4>
                         <div className='flex gap-8'>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm">
                                 Client Name : {taskActivity.clientName}
                             </p>
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-sm">
                                 Project Name : {taskActivity.projectName}
                             </p>
                         </div>
@@ -97,7 +97,7 @@ const EmployeeTaskActivityCard: React.FC<taskActivityProps> = ({ taskActivity, c
                         {taskActivity.isBillable ? "Billable" : "Non-Billable"}
                     </span>
                 </div>
-                <div className="flex items-center gap-2 rounded-lg bg-gray-100 p-4 text-sm">
+                <div className="flex items-start gap-2 rounded-lg p-4 text-sm">
                     <strong>Notes:</strong>
                     <p>{taskActivity.notes}</p>
                 </div>

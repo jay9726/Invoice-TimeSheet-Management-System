@@ -70,7 +70,7 @@ const router = createBrowserRouter([
                     { index: true, element: <Navigate to="/admin/dashboard" replace /> },
                     { path: 'dashboard', element: withSuspense(<AdminDashboardPage />) },
                     { path: 'companies', element: withSuspense(<CompanyListPage />) },
-                    { path: 'companies/bankdetails', element: withSuspense(<BankDetailsListPage />) },
+                    // { path: 'companies/bankdetails', element: withSuspense(<BankDetailsListPage />) },
                     { path: 'bankDetails', element: withSuspense(<BankDetailsListPage />) },
                     { path: 'clients', element: withSuspense(<ClientListPage />) },
                     { path: 'clients/projectdetail', element: withSuspense(<ProjectDetailPage />) },

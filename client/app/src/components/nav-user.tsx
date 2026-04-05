@@ -24,15 +24,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string
-    email: string
-    avatar: string
-  }
-}) {
+
+
+export function NavUser({ name, email, avatar, Logout }: { name: string, email: string, avatar?: string, Logout: () => void }) {
   const { isMobile } = useSidebar()
 
   return (
@@ -54,7 +48,7 @@ export function NavUser({
               "
             >
               <Avatar className="h-8 w-8 shrink-0 rounded-lg">
-                <AvatarImage src={user.avatar} alt={user.name} />
+                <AvatarImage src={avatar} alt={name} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
               <div className="
@@ -65,8 +59,8 @@ export function NavUser({
                 leading-tight
                 group-data-[collapsible=icon]:hidden
               ">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium">{name}</span>
+                <span className="truncate text-xs">{email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4 shrink-0 group-data-[collapsible=icon]:hidden" />
             </SidebarMenuButton>
@@ -80,22 +74,20 @@ export function NavUser({
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage src={avatar} alt={name} />
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate font-medium">{name}</span>
+                  <span className="truncate text-xs">{email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuSeparator />
             <DropdownMenuGroup>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut />
+            <DropdownMenuItem className="hover:cursor-pointer" onClick={Logout}>
+              <LogOut className="hover:text-red-500" />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

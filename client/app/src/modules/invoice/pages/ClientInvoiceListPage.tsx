@@ -93,7 +93,7 @@ const ClientInvoiceListPage: React.FC = () => {
         } else if (clientData?.count == 0) {
             return (
                 <TableRow>
-                    <TableCell colSpan={3} className="h-32 text-center text-slate-500">
+                    <TableCell colSpan={3} className="h-32 text-center">
                         <p className="font-medium">No Client's Found.</p>
                     </TableCell>
                 </TableRow>
@@ -104,16 +104,15 @@ const ClientInvoiceListPage: React.FC = () => {
                     return (
                         <TableRow
                             key={client.companyId}
-                            className="group border-b transition-colors hover:bg-slate-50/80 data-[state=selected]:bg-slate-100"
-                        >
-                            <TableCell className="p-2 text-center text-sm text-slate-700">
+                            className="border-b">
+                            <TableCell className="p-2 text-center text-sm">
                                 {client.clientName ?? "-"}
                             </TableCell>
 
-                            <TableCell className="p-2 text-center text-sm text-slate-700">
+                            <TableCell className="p-2 text-center text-sm">
                                 <InvoiceStatusBadge status={client.invoiceStatus ? client.invoiceStatus : "NOT_GENERATED"} />
                             </TableCell>
-                            <TableCell className="p-2 text-center text-sm text-slate-700">
+                            <TableCell className="p-2 text-center text-sm">
                                 <Button
                                     variant='link'
                                     className='cursor-pointer'
@@ -132,7 +131,7 @@ const ClientInvoiceListPage: React.FC = () => {
     return (
         <div className='flex flex-col gap-5'>
             <div className='flex justify-between items-center'>
-                <h1 className="text-xl font-bold text-secondary">Company's Client/Invoices</h1>
+                <h1 className="text-xl font-bold">Company's Client/Invoices</h1>
                 <Button onClick={() => navigate('/accountuser/invoice')}> <Icon name='leftArrow' /> Back</Button>
             </div>
             <FormInput
@@ -141,9 +140,9 @@ const ClientInvoiceListPage: React.FC = () => {
                 placeholder="Search Client..."
                 className="max-w-sm"
             />
-            <div className="rounded-md border border-slate-200 bg-white shadow-sm">
-                <Table>
-                    <TableHeader className="bg-slate-50/50">
+            <div className="rounded-md border shadow-sm">
+                <Table className='border border-border'>
+                    <TableHeader>
                         <TableRow className="hover:bg-transparent">
                             <TableHead className="h-12 text-center align-middle font-semibold text-primary uppercase  tracking-wider">
                                 Client Name

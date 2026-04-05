@@ -54,7 +54,7 @@ namespace ITSMS.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, AccountUser, Manager, Employee")]
         [HttpGet("GetEmployeeById/{id:guid}")]
         public async Task<IActionResult> GetEmployeeById(Guid id)
         {

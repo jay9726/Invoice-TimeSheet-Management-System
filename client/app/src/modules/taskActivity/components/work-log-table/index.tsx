@@ -51,16 +51,16 @@ const WorkLogTable: React.FC = () => {
                     return (
                         <TableRow
                             key={index}
-                            className="group border-b transition-colors hover:bg-slate-50/80 data-[state=selected]:bg-slate-100">
-                            <TableCell className="p-4 text-center text-sm text-slate-700">
+                            className="group border-b">
+                            <TableCell className="p-4 text-center text-sm">
                                 {task.workDate}
                             </TableCell>
 
-                            <TableCell className="p-4 text-center text-sm text-slate-700">
+                            <TableCell className="p-4 text-center text-sm">
                                 {task.taskActivityName}
                             </TableCell>
 
-                            <TableCell className="max-w-50 overflow-x-scroll p-4 text-center text-sm text-slate-700">
+                            <TableCell className="max-w-50 overflow-x-hidden p-4 text-center text-sm">
                                 {task.notes}
                             </TableCell>
 
@@ -96,9 +96,9 @@ const WorkLogTable: React.FC = () => {
 
     return (
         <>
-            <div className="max-h-115 overflow-y-auto rounded-md border border-slate-200 bg-white shadow-sm">
-                <Table>
-                    <TableHeader className="bg-slate-50/50">
+            <div className="max-h-115 overflow-y-auto rounded-md shadow-sm">
+                <Table className='border border-border'>
+                    <TableHeader>
                         <TableRow className="hover:bg-transparent">
                             <TableHead className="h-12 text-center align-middle font-semibold text-primary uppercase tracking-wider">
                                 Date

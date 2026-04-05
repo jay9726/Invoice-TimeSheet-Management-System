@@ -68,11 +68,11 @@ const AccountUserDashboard: React.FC = () => {
     ];
 
     return (
-        <div className="mx-auto flex max-w-7xl w-full flex-col gap-4 md:gap-6 px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8 min-h-auto bg-slate-50/50">
+        <div className="mx-auto flex max-w-7xl w-full flex-col gap-4 md:gap-6 px-4 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8 min-h-auto">
 
             <div className="space-y-2">
-                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-secondary">Dashboard Overview</h1>
-                <p className="text-muted-foreground text-sm sm:text-base max-w-3xl">
+                <h1 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight">Dashboard Overview</h1>
+                <p className="text-muted text-sm sm:text-base max-w-3xl">
                     Get a high-level view of your companies, clients, actively billing projects, and invoicing status at a glance.
                 </p>
             </div>

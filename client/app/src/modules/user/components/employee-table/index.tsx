@@ -55,8 +55,8 @@ const EmployeeTable: React.FC<employeeTableProps> = ({ data, emptyText = "No rec
 
     return (
         <>
-            <div className="max-h-115 overflow-y-auto  rounded-md border border-slate-200 bg-white shadow-sm">
-                <Table>
+            <div className="max-h-115 overflow-y-auto  rounded-md border shadow-sm">
+                <Table className='border border-border'>
                     <TableHeader>
                         <TableRow>
                             <TableHead className="h-12 text-center align-middle font-semibold text-primary uppercase tracking-wider">Name</TableHead>
@@ -71,7 +71,7 @@ const EmployeeTable: React.FC<employeeTableProps> = ({ data, emptyText = "No rec
                     <TableBody>
                         {data?.length ? (
                             data?.map((u) => (
-                                <TableRow key={u.employeeId} className="hover:bg-primary/10">
+                                <TableRow key={u.employeeId}>
                                     <TableCell className="text-center">{u.fullName}</TableCell>
                                     <TableCell className="text-center">{u.email}</TableCell>
                                     <TableCell className="text-center">{u.role}</TableCell>

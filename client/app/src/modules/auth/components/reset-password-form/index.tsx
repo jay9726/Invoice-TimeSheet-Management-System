@@ -52,7 +52,7 @@ const ResetPasswordForm: React.FC = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div className="space-y-2">
-                <Label className="text-white/90">New Password</Label>
+                    <Label>New Password</Label>
                 <Controller
                     control={control}
                     name="newPassword"
@@ -71,7 +71,7 @@ const ResetPasswordForm: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-                <Label className="text-white/90">Confirm Password</Label>
+                <Label>Confirm Password</Label>
                 <Controller
                     control={control}
                     name="confirmPassword"

@@ -30,7 +30,7 @@ const CreateTaskActivityPage = () => {
 
     return (
         <div className="w-full flex flex-col gap-2 px-4 ">
-            <h1 className="text-xl font-bold text-secondary"> Submit Work Logs </h1>
+            <h1 className="text-xl font-bold"> Submit Work Logs </h1>
             <div className="flex justify-end items-center mb-2">
                 <Button onClick={() => setCreateOpenDialog(true)}>+</Button>
             </div>

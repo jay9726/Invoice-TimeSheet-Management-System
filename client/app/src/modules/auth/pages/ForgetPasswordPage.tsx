@@ -12,10 +12,10 @@ const ForgotPasswordPage: React.FC = () => {
                         <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary mb-4 font-medium">
                             Account Recovery
                         </div>
-                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
                             Forgot your password?
                         </h1>
-                        <p className="text-base text-muted-foreground">
+                        <p className="text-base text-muted">
                             Enter your email address to receive a secure password reset link.
                         </p>
                     </div>

@@ -46,7 +46,7 @@ const AdminInvoiceCompanyPage: React.FC = () => {
                 />
 
                 <div className="flex">
-                    <h1 className="text-sm font-bold text-secondary">Total : {data?.count}</h1>
+                    <h1 className="text-sm font-bold">Total : {data?.count}</h1>
                     <Paggination
                         currentPage={currentPage}
                         totalPages={totalPages || 1}
@@ -75,7 +75,7 @@ const AdminInvoiceCompanyPage: React.FC = () => {
     return (
         <div className="flex flex-col gap-5">
             <div className='grid grid-cols-2 items-center'>
-                <h1 className=" text-xl font-bold text-secondary">All Companies List For Invoices</h1>
+                <h1 className=" text-xl font-bold">All Companies List For Invoices</h1>
                 <div className="flex justify-end items-center">
                     <FormInput
                         value={search}

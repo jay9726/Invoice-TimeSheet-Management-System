@@ -65,7 +65,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, inputComponentProps>(
                         autoComplete='off'
                         className="
         w-full text-sm bg-transparent outline-none
-        placeholder:text-slate-400 text-secondary
+        placeholder:text-slate-400
       "
                         value={value}
                         onChange={(e) => onChange(e.target.value)}

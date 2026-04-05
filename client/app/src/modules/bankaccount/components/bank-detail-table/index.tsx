@@ -58,9 +58,9 @@ const BankDetailTable: React.FC<bankDetailTableProps> = ({ data, emptyText = "No
 
     return (
         <>
-            <div className="max-h-115 overflow-y-auto rounded-md border border-slate-200 bg-white shadow-sm">
-                <Table>
-                    <TableHeader className="bg-slate-50/50">
+            <div className="max-h-115 overflow-y-auto rounded-md shadow-sm">
+                <Table className='border border-border'>
+                    <TableHeader>
                         <TableRow className="hover:bg-transparent">
                             <TableHead className="h-12 text-center align-middle font-semibold text-primary uppercase tracking-wider">
                                 Bank Name
@@ -104,25 +104,25 @@ const BankDetailTable: React.FC<bankDetailTableProps> = ({ data, emptyText = "No
                                 return (
                                     <TableRow
                                         key={b.bankDetailId}
-                                        className="group border-b transition-colors hover:bg-slate-50/80 data-[state=selected]:bg-slate-100"
+                                        className="group border-b"
                                     >
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {b.bankName ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {b.swiftCode ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {b.accountName ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {b.accountNumber ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {b.routingNumber ?? "-"}
                                         </TableCell>
 
@@ -140,7 +140,7 @@ const BankDetailTable: React.FC<bankDetailTableProps> = ({ data, emptyText = "No
 
                                         <TableCell className="p-4 text-center text-sm">
                                             <ToolTips children={
-                                                <Button variant='link' className='hover:cursor-pointer hover:text-secondary'
+                                                <Button variant='link' className='hover:cursor-pointer'
                                                     onClick={() => { statusSetOpen(true); setSelectID(b.bankDetailId as string); setStatus(!b.isActive); }}
                                                 >
                                                     {
@@ -155,7 +155,7 @@ const BankDetailTable: React.FC<bankDetailTableProps> = ({ data, emptyText = "No
                                             <ToolTips children={
                                                 <Button
                                                     variant="link"
-                                                    className="hover:cursor-pointer hover:text-secondary"
+                                                    className="hover:cursor-pointer"
                                                     onClick={() => onOpenUpdate(b.bankDetailId as string)}
                                                 >
                                                     <Icon name="update" width={18} height={18} />
@@ -166,7 +166,7 @@ const BankDetailTable: React.FC<bankDetailTableProps> = ({ data, emptyText = "No
                                             <ToolTips children={
                                                 <Button
                                                     variant="link"
-                                                    className="hover:cursor-pointer hover:text-secondary"
+                                                    className="hover:cursor-pointer"
                                                     onClick={() => { setOepn(true), setSelectID(b.bankDetailId as string) }}
                                                 >
                                                     <Icon name="delete" width={18} height={18} stroke="red" />
@@ -179,7 +179,7 @@ const BankDetailTable: React.FC<bankDetailTableProps> = ({ data, emptyText = "No
                             })
                         ) : (
                             <TableRow>
-                                <TableCell colSpan={8} className="h-32 text-center text-slate-500">
+                                <TableCell colSpan={8} className="h-32 text-center">
                                     <p className="font-medium">{emptyText || "No results found."}</p>
                                 </TableCell>
                             </TableRow>

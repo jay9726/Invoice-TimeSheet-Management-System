@@ -6,11 +6,11 @@ interface invoiceStatusProps {
 }
 
 
-export const InvoiceStatusBadge:React.FC<invoiceStatusProps> = ({ status }) => {
+export const InvoiceStatusBadge: React.FC<invoiceStatusProps> = ({ status }) => {
   switch (status) {
     case "NOT_GENERATED":
       return (
-        <Badge className="bg-gray-100 text-gray-800 border-gray-300">
+        <Badge className="bg-white text-primary border-gray-300">
           Not Generated
         </Badge>
       );

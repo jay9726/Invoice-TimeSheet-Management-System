@@ -67,11 +67,12 @@ export const InvoicePreviewA4 = React.forwardRef<HTMLDivElement, { data: Invoice
           color: "#111",
           boxSizing: "border-box",
           border: "1px solid #ccc",
+          backgroundColor: "#ffffff",
         }}
       >
 
         {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "40px" }}>
+        <div style={{ display: "flex",  justifyContent: "space-between", marginBottom: "40px" }}>
 
           <img
             crossOrigin="anonymous"

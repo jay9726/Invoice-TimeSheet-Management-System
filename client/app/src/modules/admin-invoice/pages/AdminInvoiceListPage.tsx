@@ -60,7 +60,6 @@ const AdminInvoiceListPage: React.FC = () => {
         mutate({ clientId: clientId }, {
             onSuccess: async (res: any) => {
                 const invoiceData: InvoicePreviewResponse = res.data
-                console.log(invoiceData)
                 setIsGeneratingPdf(true)
 
                 try {
@@ -115,7 +114,7 @@ const AdminInvoiceListPage: React.FC = () => {
         } else if (!data?.data?.length) {
             return (
                 <TableRow>
-                    <TableCell colSpan={9} className="h-20 text-center text-slate-500">
+                    <TableCell colSpan={9} className="h-20 text-center">
                         <p className="text-xl">No results found.</p>
                     </TableCell>
                 </TableRow>
@@ -124,17 +123,17 @@ const AdminInvoiceListPage: React.FC = () => {
             return data.data.map((c: invoiceType) => (
                 <TableRow
                     key={c.clientId}
-                    className="group border-b transition-colors hover:bg-slate-50/80 data-[state=selected]:bg-slate-100"
+                    className="group border-b"
                 >
-                    <TableCell className="p-4 text-center text-sm text-slate-700">{c.clientName ?? "-"}</TableCell>
-                    <TableCell className="p-4 text-center text-sm text-slate-700">{c.invoiceNumber ?? "-"}</TableCell>
-                    <TableCell className="p-4 text-center text-sm text-slate-700">{c.poNumber ?? "-"}</TableCell>
-                    <TableCell className="p-4 text-center text-sm text-slate-700">{c.invoiceDate ?? "-"}</TableCell>
-                    <TableCell className="p-4 text-center text-sm text-slate-700">{c.totalAmount ?? "-"}</TableCell>
-                    <TableCell className="p-4 text-center text-sm text-slate-700">
+                    <TableCell className="p-4 text-center text-sm">{c.clientName ?? "-"}</TableCell>
+                    <TableCell className="p-4 text-center text-sm">{c.invoiceNumber ?? "-"}</TableCell>
+                    <TableCell className="p-4 text-center text-sm">{c.poNumber ?? "-"}</TableCell>
+                    <TableCell className="p-4 text-center text-sm">{c.invoiceDate ?? "-"}</TableCell>
+                    <TableCell className="p-4 text-center text-sm">{c.totalAmount ?? "-"}</TableCell>
+                    <TableCell className="p-4 text-center text-sm">
                         <InvoiceStatusBadge status={c.status} />
                     </TableCell>
-                    <TableCell className="p-4 text-center text-sm text-slate-700">
+                    <TableCell className="p-4 text-center text-sm">
                         <ToolTips children={
                             <Button variant='ghost' onClick={() => previewInvoice(c.clientId, c.clientName)}>
                                 {
@@ -145,7 +144,7 @@ const AdminInvoiceListPage: React.FC = () => {
                             lable="Invoice Preview"
                         />
                     </TableCell>
-                    <TableCell className="p-4 text-center text-sm text-slate-700">
+                    <TableCell className="p-4 text-center text-sm">
                         <Button onClick={() => { setOpen(true); setInvoiceId(c.invoiceId) }} disabled={isGeneratingPdf || isPreviewing}>
                             Review
                         </Button>
@@ -155,12 +154,11 @@ const AdminInvoiceListPage: React.FC = () => {
         }
     }
 
-    console.log(data)
     return (
         <>
             <div className="flex flex-col gap-5">
                 <div className="flex justify-between items-center">
-                    <h1 className="text-xl font-bold text-secondary">All Client's Invoices</h1>
+                    <h1 className="text-xl font-bold">All Client's Invoices</h1>
                     <Button onClick={() => navigate(-1)}><Icon name="leftArrow" />Back</Button>
                 </div>
                 <div className='flex justify-end'>
@@ -172,9 +170,9 @@ const AdminInvoiceListPage: React.FC = () => {
                     />
                 </div>
 
-                <div className="rounded-md border border-slate-200 bg-white shadow-sm">
-                    <Table>
-                        <TableHeader className="bg-slate-50/50">
+                <div className="rounded-md shadow-sm">
+                    <Table className='border border-border'>
+                        <TableHeader>
                             <TableRow className="hover:bg-transparent">
                                 <TableHead className="h-12 text-center align-middle font-semibold text-primary uppercase tracking-wider">Client Name</TableHead>
                                 <TableHead className="h-12 text-center align-middle font-semibold text-primary uppercase tracking-wider">Invoice Number</TableHead>

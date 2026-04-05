@@ -13,10 +13,10 @@ interface summaryCardProps {
 }
 
 
-const EmployeeSummaryCard: React.FC<{card: summaryCardProps}> = ({ card }) => {
+const EmployeeSummaryCard: React.FC<{ card: summaryCardProps }> = ({ card }) => {
     return (
         <Card
-            className="group relative overflow-hidden rounded-xl bg-white border border-slate-200/50 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-slate-300 hover:-translate-y-1"
+            className="group relative overflow-hidden rounded-xl border border-border shadow-sm transition-all duration-300 hover:shadow-xlhover:-translate-y-1"
         >
             {/* Dynamic Left Accent Bar */}
             <div className={`absolute top-0 bottom-0 left-0 w-1 ${card.leftBorderColor}`} />
@@ -31,15 +31,15 @@ const EmployeeSummaryCard: React.FC<{card: summaryCardProps}> = ({ card }) => {
 
                 {/* Right Side: Data */}
                 <div className="flex flex-col flex-1 overflow-hidden">
-                    <p className="text-xs sm:text-sm font-semibold tracking-widest text-slate-500 uppercase truncate">
+                    <p className="text-xs sm:text-sm font-semibold tracking-widest uppercase truncate">
                         {card.label}
                     </p>
                     <div className="flex items-baseline gap-2 mt-1">
-                        <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 group-hover:text-slate-700 transition-colors">
+                        <h3 className='text-2xl sm:text-3xl font-bold tracking-tight group-hover:text-primary transition-colors'>
                             {card.value !== undefined ? card.value : <span className="opacity-20">--</span>}
                         </h3>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-400 mt-1 truncate group-hover:text-slate-500 transition-colors">
+                    <p className="text-xs sm:text-sm text-muted mt-1 truncate transition-colors">
                         {card.description}
                     </p>
                 </div>

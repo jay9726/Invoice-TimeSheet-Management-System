@@ -15,7 +15,7 @@ const CompanyDetailsPage: React.FC = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
-                className="rounded-xl border bg-white shadow-sm p-5 hover:shadow-md transition"
+                className="rounded-xl border shadow-sm p-5 hover:shadow-md transition"
             >
 
                 <div className="flex items-center justify-between mb-4">
@@ -37,29 +37,30 @@ const CompanyDetailsPage: React.FC = () => {
                             {data?.data.isActive ? "Active" : "Inactive"}
                         </span>
                     </div>
-                    <div className="flex justify-between">
-                        <span className="text-gray-500">Address</span>
-                        <span className="font-medium">{data?.data.addressLine1 ?? "-"}</span>
-                    </div>
 
                     <div className="flex justify-between">
-                        <span className="text-gray-500">Country</span>
+                        <span>Country</span>
                         <span className="font-medium">{data?.data.country ?? "-"}</span>
                     </div>
 
                     <div className="flex justify-between">
-                        <span className="text-gray-500">State</span>
+                        <span>State</span>
                         <span className="font-medium">{data?.data.state ?? "-"}</span>
                     </div>
 
                     <div className="flex justify-between">
-                        <span className="text-gray-500">City</span>
+                        <span>City</span>
                         <span className="font-medium">{data?.data.city ?? "-"}</span>
                     </div>
 
                     <div className="flex justify-between">
-                        <span className="text-gray-500">Zip Code</span>
+                        <span>Zip Code</span>
                         <span className="font-medium">{data?.data.zip ?? "-"}</span>
+                    </div>
+                    
+                    <div className="flex justify-between">
+                        <span>Address</span>
+                        <span className="font-medium">{data?.data.addressLine1 ?? "-"}</span>
                     </div>
                 </div>
             </div>

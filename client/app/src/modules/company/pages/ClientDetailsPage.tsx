@@ -24,43 +24,43 @@ const TreeClientNode: React.FC<{ client: any }> = ({ client }) => {
     return (
         <AccordionItem
             value={client.clientId || Math.random().toString()}
-            className="rounded-lg border border-primary bg-white shadow-sm overflow-hidden data-[state=open]"
+            className="rounded-lg border border-primary shadow-sm overflow-hidden data-[state=open]"
         >
             {/* The Parent Node (Client) Trigger */}
-            <AccordionTrigger className="group relative flex items-center justify-between px-4 py-3 hover:bg-gray-50 hover:cursor-pointer hover:no-underline transition-all">
+            <AccordionTrigger className="group relative flex items-center justify-between px-4 py-3 hover:bg-primary/10 hover:cursor-pointer hover:no-underline transition-all">
                 {/* Active Indicator Strip */}
                 <div className={"absolute left-0 top-0 bottom-0 w-1 transition-colors bg-primary"} />
 
                 <div className="flex items-center gap-4 pl-2 grow">
                     {/* Folder Icon */}
-                    <FolderOpen className="h-5 w-5 text-slate-400 group-data-[state=open]:text-indigo-500 transition-colors" />
+                    <FolderOpen className="h-5 w-5 group-data-[state=open]:text-indigo-500 transition-colors" />
 
                     {/* Basic Info */}
                     <div className="flex flex-col text-left ml-2">
-                        <span className="text-base font-semibold text-slate-900">{client.clientName ?? "Unnamed Client"}</span>
+                        <span className="text-base font-semibold">{client.clientName ?? "-"}</span>
                         <div className="flex items-center gap-2 mt-0.5">
                             <div className={cn(
                                 "h-1.5 w-1.5 rounded-full",
-                                client.isActive ? "bg-green-500" : "bg-red-5    00"
+                                client.isActive ? "bg-green-500" : "bg-red-500"
                             )} />
-                            <span className="text-xs text-slate-500 font-normal">{client.isActive ? "Active Account" : "Inactive Account"}</span>
+                            <span className="text-xs font-normal">{client.isActive ? "Active Account" : "Inactive Account"}</span>
                         </div>
                     </div>
                 </div>
 
                 {/* Right Side Stats Grid */}
                 <div className="hidden sm:grid grid-cols-3 gap-8 text-left pr-6">
-                    <div className="flex flex-col text-left">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Contact</span>
-                        <span className="text-sm font-semibold text-slate-800">{client.contactNumber ?? "-"}</span>
+                    <div className="flex flex-col text-left gap-1">
+                        <span className="text-md font-bold uppercase tracking-wider text-primary">Contact</span>
+                        <span className="text-sm font-semibold">{client.contactNumber ?? "-"}</span>
                     </div>
-                    <div className="flex flex-col text-left">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Projects</span>
-                        <span className="text-sm font-semibold text-slate-800">{`Total : ${projectCount}`}</span>
+                    <div className="flex flex-col text-left gap-1">
+                        <span className="text-md font-bold uppercase tracking-wider text-primary">Projects</span>
+                        <span className="text-sm font-semibold">{`Total : ${projectCount}`}</span>
                     </div>
-                    <div className="flex flex-col text-left">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Active Projects</span>
-                        <span className="text-sm font-semibold text-slate-800">{`Total : ${activeProjects}`}</span>
+                    <div className="flex flex-col text-left gap-1">
+                        <span className="text-md font-bold uppercase tracking-wider text-primary">Active Projects</span>
+                        <span className="text-sm font-semibold">{`Total : ${activeProjects}`}</span>
                     </div>
                 </div>
             </AccordionTrigger>
@@ -79,22 +79,24 @@ const TreeClientNode: React.FC<{ client: any }> = ({ client }) => {
                                     <div className="absolute -left-6 top-1/2 h-0.5 w-6 bg-primary" />
 
                                     {/* Project Detail Card */}
-                                    <div className="flex w-full items-center justify-between rounded border bg-white px-5 py-2 shadow-md hover:border-secondary/50 transition-colors mr-4">
+                                    <div className="flex w-full items-center justify-between rounded border border-border px-5 py-2 shadow-md hover:bg-primary/10 transition-colors mr-4">
                                         <div className="flex items-center gap-3">
                                             <FileText className="h-4 w-4 text-primary" />
                                             <div className="flex flex-col text-left">
-                                                <span className="text-sm font-semibold text-slate-800">{project.projectName ?? "Unnamed Project"}</span>
+                                                <span className="text-sm font-semibold">{project.projectName ?? "-"}</span>
                                                 <div className="flex items-center gap-1.5 mt-0.5">
-                                                    <div className={cn("h-1.5 w-1.5 rounded-full", project.isActive ? "bg-emerald-500" : "bg-slate-400")} />
-                                                    <span className="text-xs text-slate-500 font-normal">{project.isActive ? "Active" : "Inactive"}</span>
+                                                    <div className={cn("h-1.5 w-1.5 rounded-full", project.isActive ? "bg-emerald-500" : "bg-red-500")} />
+                                                    <span className={cn("text-xs font-normal", project.isActive ? "text-emerald-500" : "text-red-500")}>
+                                                        {project.isActive ? "Active" : "Inactive"}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div className="flex items-center gap-8">
-                                            <div className="flex flex-col text-left">
-                                                <span className="text-[11px] font-medium uppercase tracking-wider text-slate-400">Rate</span>
-                                                <span className="text-sm font-semibold text-slate-800">{`₹ ${project.hourlyRate} / h`}</span>
+                                            <div className="flex flex-col text-left gap-1">
+                                                <span className="text-md font-medium uppercase tracking-wider text-primary">Rate</span>
+                                                <span className="text-sm font-semibold">{`₹ ${project.hourlyRate} / h`}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +129,7 @@ const ClientDetailsPage: React.FC = () => {
         <div className="mx-auto flex max-w-full w-full flex-col gap-6 px-4 py-3 sm:px-4 lg:px-6 min-h-auto">
             {/* Header Area */}
             <div className="flex flex-col gap-1 text-left">
-                <h1 className="text-2xl font-bold tracking-tight text-secondary">Client Hierarchy</h1>
+                <h1 className="text-2xl font-bold tracking-tight">Client Hierarchy</h1>
                 <p className="text-sm text-slate-500">
                     Expand individual clients to view and manage their nested project associations.
                 </p>
@@ -142,10 +144,10 @@ const ClientDetailsPage: React.FC = () => {
                         ))}
                     </Accordion>
                 ) : (
-                    <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-slate-300 py-16 bg-white">
-                        <FolderOpen className="h-10 w-10 text-slate-300 mb-2" />
-                        <h3 className="text-lg font-medium text-slate-700">No Clients Found</h3>
-                        <p className="text-sm text-slate-500">There are currently no clients mapped to this company.</p>
+                    <div className="flex flex-col items-center justify-center rounded-lg border  border-border py-16">
+                        <FolderOpen className="h-10 w-10 mb-2" />
+                        <h3 className="text-lg font-medium">No Clients Found</h3>
+                        <p className="text-sm">There are currently no clients mapped to this company.</p>
                     </div>
                 )}
             </div>

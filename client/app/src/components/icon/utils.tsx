@@ -1,4 +1,4 @@
-import { ArrowLeft, Building, Building2, CheckCircle2, CircleUser, ClipboardList, Clock3, Download, Eye, File, IndianRupee, LockKeyhole, MailIcon, Pencil, ReceiptText, ScrollText, Send, SquareCheck, SquareX, Trash2, Users, X, XCircle } from "lucide-react";
+import { ArrowLeft, Building, Building2, CheckCircle2, CircleUser, ClipboardList, Clock3, Download, Eye, File, FolderKanban, History, IndianRupee, LayoutDashboard, ListCheck, LockKeyhole, MailIcon, Pencil, ReceiptText, ScrollText, Send, SquareCheck, SquareX, Trash2, User2, Users, X, XCircle } from "lucide-react";
 import ApprovedIcon from "./approved-icon";
 import DraftIcon from "./draft-icon";
 import RejectedIcon from "./rejected-icon";
@@ -25,14 +25,22 @@ export const LUCIDE_ICONS = {
     send: Send,
     approved: CheckCircle2,
     rejected: XCircle,
-    clock : Clock3,
-    users : Users,
-    building : Building,
-    timsheet : ScrollText,
-    buildings : Building2,
-    generated : File,
-    finalized : ReceiptText,
-    paid : IndianRupee,
-    squarecheck : SquareCheck,
-    squareUnCheck:  SquareX
+    clock: Clock3,
+    users: Users,
+    building: Building,
+    timesheet: ScrollText,
+    buildings: Building2,
+    generated: File,
+    finalized: ReceiptText,
+    paid: IndianRupee,
+    squarecheck: SquareCheck,
+    squareUnCheck: SquareX,
+    dashboard: LayoutDashboard,
+    companies: Building2,
+    bankAccount: Building,
+    client: User2,
+    project: FolderKanban,
+    invoice: ListCheck,
+    logtime: ClipboardList,
+    history: History
 }

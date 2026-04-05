@@ -55,10 +55,10 @@ const ManagerDashboardPage: React.FC = () => {
     ];
 
     return (
-        <div className="flex w-full flex-col gap-8 p-6 md:p-8 max-w-400 mx-auto min-h-auto bg-slate-50/50">
+        <div className="flex w-full flex-col gap-8 p-6 md:p-8 max-w-400 mx-auto min-h-auto">
 
             <div className="flex flex-col gap-3">
-                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-secondary">Operations Control Center</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Operations Control Center</h1>
             </div>
 
             <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 animate-in fade-in slide-in-from-bottom-4 duration-500 ease-in-out">

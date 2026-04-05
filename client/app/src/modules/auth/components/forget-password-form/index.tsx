@@ -43,7 +43,7 @@ const ForgetPasswordForm: React.FC = () => {
                 name="email"
                 render={({ field, fieldState }) => (
                     <div className="space-y-2">
-                        <Label className="font-semibold text-gray-700">Email Address</Label>
+                        <Label className="font-semibold">Email Address</Label>
                         <InputComponent
                             {...field}
                             placeholder="name@company.com"
@@ -61,7 +61,7 @@ const ForgetPasswordForm: React.FC = () => {
                 </Button>
             </div>
 
-            <div className="text-center text-sm font-medium text-gray-600 mt-6">
+            <div className="text-center text-sm font-medium text-muted mt-6">
                 Remember your password?{" "}
                 <NavLink to="/" className="text-primary hover:text-primary/80 transition-colors">
                     Log in

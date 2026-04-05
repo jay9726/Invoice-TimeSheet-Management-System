@@ -22,7 +22,7 @@ const TaskSheetHistoryPage = () => {
                     <TableCell colSpan={6} className="py-10 text-center">
                         <div className="mx-auto max-w-sm">
                             <p className="text-sm font-medium">No records found</p>
-                            <p className="mt-1 text-xs text-muted-foreground">
+                            <p className="mt-1 text-xs text-muted">
                                 Once you add timesheet actions, they’ll appear here.
                             </p>
                         </div>
@@ -31,17 +31,16 @@ const TaskSheetHistoryPage = () => {
             )
         } else {
             return (
-                data.map((r: any, idx: number) => (
+                data.map((r: any) => (
                     <TableRow
-                        key={`${r.timesheetDate}-${idx}`}
-                        className="transition-colors hover:bg-primary/5"
+                        key={`${r.timesheetDate}`}
                     >
 
-                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                        <TableCell className="p-4 text-center text-sm">
                             {r.timesheetDate}
                         </TableCell>
 
-                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                        <TableCell className="p-4 text-center text-sm">
                             {r.status ? (
                                 <Badge
                                     className={cn(
@@ -57,20 +56,20 @@ const TaskSheetHistoryPage = () => {
                             ) : null}
                         </TableCell>
 
-                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                        <TableCell className="p-4 text-center text-sm">
                             {r.comment || "--"}
                         </TableCell>
 
 
-                        <TableCell className="p-4 text-center text-sm text-slate-700">{r.actionBy || "--"}
+                        <TableCell className="p-4 text-center text-sm">{r.actionBy || "--"}
                         </TableCell>
 
 
-                        <TableCell className="p-4 text-center text-sm text-slate-700">{r.actionDate || "--"}
+                        <TableCell className="p-4 text-center text-sm">{r.actionDate || "--"}
                         </TableCell>
 
 
-                        <TableCell className="p-4 text-center text-sm text-slate-700">{r.remarks || "--"}
+                        <TableCell className="p-4 text-center text-sm">{r.remarks || "--"}
                         </TableCell>
                     </TableRow>
                 ))
@@ -82,11 +81,11 @@ const TaskSheetHistoryPage = () => {
     return (
         <div className='flex flex-col gap-5'>
             <div className="flex flex-col gap-1">
-                <h2 className="text-xl font-bold text-secondary">Timesheet History</h2>
-                <p className="text-sm text-muted-foreground">Date-wise comments and approvals with remarks.</p>
+                <h2 className="text-xl font-bold">Timesheet History</h2>
+                <p className="text-sm text-muted">Date-wise comments and approvals with remarks.</p>
             </div>
 
-            <div className="rounded-xl border bg-white shadow-sm">
+            <div className="rounded-xl border shadow-sm">
                 <div className="w-full overflow-x-auto">
                     <Table className="min-w-full">
                         <TableHeader>

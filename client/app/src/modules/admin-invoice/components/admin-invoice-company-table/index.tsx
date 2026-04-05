@@ -16,9 +16,9 @@ interface adminInvoiceCompanyProps {
 const AdminInvoiceCompanyTable: React.FC<adminInvoiceCompanyProps> = ({ data, emptyText }) => {
     return (
         <>
-            <div className="max-h-115 overflow-y-auto rounded-md border border-slate-200 bg-white shadow-sm">
-                <Table>
-                    <TableHeader className="bg-slate-50/50">
+            <div className="max-h-115 overflow-y-auto rounded-md  shadow-sm">
+                <Table className='border border-border'>
+                    <TableHeader>
                         <TableRow className="hover:bg-transparent">
                             <TableHead className="h-12 text-center align-middle font-semibold text-primary uppercase  tracking-wider">
                                 Company Name
@@ -58,9 +58,9 @@ const AdminInvoiceCompanyTable: React.FC<adminInvoiceCompanyProps> = ({ data, em
                                 return (
                                     <TableRow
                                         key={c.companyId}
-                                        className="group border-b transition-colors hover:bg-slate-50/80 data-[state=selected]:bg-slate-100"
+                                        className="group border-b "
                                     >
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             <div className='flex gap-2 items-center'>
                                                 <img
                                                     src={`https://localhost:7273/${c.companyLogo}`}
@@ -71,24 +71,24 @@ const AdminInvoiceCompanyTable: React.FC<adminInvoiceCompanyProps> = ({ data, em
                                             </div>
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.addressLine1 ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.country ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.state ?? "-"}
                                         </TableCell>
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.city ?? "-"}
                                         </TableCell>
 
 
-                                        <TableCell className="p-4 text-center text-sm text-slate-700">
+                                        <TableCell className="p-4 text-center text-sm">
                                             {c.zip ?? "-"}
                                         </TableCell>
 
@@ -120,7 +120,7 @@ const AdminInvoiceCompanyTable: React.FC<adminInvoiceCompanyProps> = ({ data, em
                             })
                         ) : (
                             <TableRow>
-                                <TableCell colSpan={9} className="h-32 text-center text-slate-500">
+                                <TableCell colSpan={9} className="h-32 text-center">
                                     <p className="font-medium">{emptyText || "No results found."}</p>
 
                                 </TableCell>

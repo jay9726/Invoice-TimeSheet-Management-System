@@ -7,7 +7,7 @@
   "compilerOptions": {
      "target": "ESNext",
     "moduleResolution": "Bundler",
-    "baseUrl": ".",
+    // "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }

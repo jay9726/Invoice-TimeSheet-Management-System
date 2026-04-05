@@ -36,7 +36,7 @@ const ManagerEmployeesPage = () => {
     } else {
       return (
         data.data.map((emp: employeeType) => (
-          <TableRow key={emp.employeeId} className=" hover:bg-primary/5">
+          <TableRow key={emp.employeeId}>
             <TableCell className="text-center">{emp.fullName}</TableCell>
             <TableCell className="text-center">{emp.email}</TableCell>
             <TableCell className={cn(
@@ -67,11 +67,11 @@ const ManagerEmployeesPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-5 rounded-xl border bg-white p-6 shadow-sm">
+      <div className="flex flex-col gap-5 rounded-xl border p-6 shadow-sm">
         <div className="grid grid-cols-2 items-center">
-          <h1 className="text-xl font-bold text-secondary">All Employees List</h1>
+          <h1 className="text-xl font-bold">All Employees List</h1>
           <div className="relative flex justify-end items-end">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
             <FormInput
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -83,10 +83,10 @@ const ManagerEmployeesPage = () => {
         <Table>
           <TableHeader>
             <TableRow className="hover:bg-transparent">
-              <TableHead className="text-center">Employee Name</TableHead>
-              <TableHead className="text-center">Email Address</TableHead>
-              <TableHead className="text-center">Active</TableHead>
-              <TableHead className="text-center">Actions</TableHead>
+              <TableHead className="text-center text-primary">Employee Name</TableHead>
+              <TableHead className="text-center text-primary">Email Address</TableHead>
+              <TableHead className="text-center text-primary">Active</TableHead>
+              <TableHead className="text-center text-primary">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

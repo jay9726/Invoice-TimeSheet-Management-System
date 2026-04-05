@@ -10,10 +10,10 @@ const ResetPasswordPage: React.FC = () => {
                         <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary mb-4 font-medium">
                             Secure Update
                         </div>
-                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
                             Reset your password
                         </h1>
-                        <p className="text-base text-muted-foreground">
+                        <p className="text-base text-muted">
                             Please create a strong, new password that you don't use on other websites.
                         </p>
                     </div>

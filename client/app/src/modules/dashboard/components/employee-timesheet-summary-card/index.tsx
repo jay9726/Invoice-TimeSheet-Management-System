@@ -15,8 +15,8 @@ const EmployeeTimesheetSummaryCard: React.FC<{ metric: timesheetProps }> = ({ me
             >
                 {metric.icon}
             </div>
-            <div className="text-xl font-bold text-slate-900">{metric.value !== undefined ? metric.value : '--'}</div>
-            <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">{metric.label}</div>
+            <div className="text-xl font-bold">{metric.value !== undefined ? metric.value : '--'}</div>
+            <div className="text-xs font-medium text-muted uppercase tracking-wider">{metric.label}</div>
         </div>
     )
 }

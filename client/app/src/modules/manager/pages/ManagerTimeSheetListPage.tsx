@@ -30,7 +30,6 @@ const ManagerTimesheetsListPage = () => {
         </div>
       )
     } else {
-      console.log(data)
       return (
         data?.data?.map((timeSheet: timesheetType) => (
           <ManagerTimeSheetCard
@@ -60,7 +59,7 @@ const ManagerTimesheetsListPage = () => {
   return (
     <div className="flex flex-col gap-3">
       <div className="grid grid-cols-2 items-center">
-        <h1 className="text-xl font-bold text-secondary">All Timesheets/Activities</h1>
+        <h1 className="text-xl font-bold">All Timesheets/Activities</h1>
         <div className="flex justify-end ">
           <Button
             onClick={() => navigate(-1)}
@@ -72,7 +71,7 @@ const ManagerTimesheetsListPage = () => {
 
         <Card className="w-full rounded-2xl py-3 px-3 lg:w-2/5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm font-semibold text-muted">
               <CalendarDays className="h-4 w-4" /> TIMESHEETS
             </div>
             <Badge variant='ghost' className="rounded-full text-md text-primary">

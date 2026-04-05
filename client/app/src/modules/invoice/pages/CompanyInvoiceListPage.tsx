@@ -26,7 +26,7 @@ const CompanyInvoiceListPage: React.FC = () => {
             return <Loader />
         } else if (data?.count == 0) {
             return (
-                <div className="rounded-2xl border bg-background p-8 text-center text-muted-foreground">
+                <div className="rounded-2xl border p-8 text-center">
                     No companies found.
                 </div>
             )
@@ -45,7 +45,7 @@ const CompanyInvoiceListPage: React.FC = () => {
     return (
         <div className="flex flex-col gap-5">
             <div className="grid sm:grid-cols-2 items-center">
-                <h1 className="text-xl font-bold text-secondary">All Companies For Invoices</h1>
+                <h1 className="text-xl font-bold">All Companies For Invoices</h1>
                 <div className="flex justify-end items-center gap-2">
                     <FormInput
                         value={search}

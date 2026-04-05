@@ -60,7 +60,7 @@ const BankDetailListPage = () => {
         />
 
         <div className="flex">
-          <h1 className="text-sm font-bold text-secondary">Total : {data.count}</h1>
+          <h1 className="text-sm font-bold">Total : {data.count}</h1>
           <Paggination
             currentPage={currentPage}
             totalPages={totalPages || 1}
@@ -89,7 +89,7 @@ const BankDetailListPage = () => {
   return (
     <div className="flex flex-col gap-5">
       <div className="grid grid-cols-2 items-center">
-        <h1 className="text-xl font-bold text-secondary ">All Bank Accounts</h1>
+        <h1 className="text-xl font-bold">All Bank Accounts</h1>
         <div className="flex justify-end items-center gap-2">
           <Button onClick={() => setCreateOpenDialog(true)}>Create Bank Account</Button>
           <FormInput

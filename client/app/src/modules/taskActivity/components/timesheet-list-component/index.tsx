@@ -47,8 +47,8 @@ const TimeSheetListComponent: React.FC = () => {
     }
 
     return (
-        <div className="w-2/5 rounded-xl border bg-white p-4">
-            <h3 className="mb-4 text-sm font-semibold text-muted-foreground">TIMESHEETS</h3>
+        <div className="w-2/5 rounded-xl border p-4">
+            <h3 className="mb-4 text-sm font-semibold text-muted">TIMESHEETS</h3>
 
             <div className='max-h-[70vh] overflow-y-scroll scroll-smooth'>
 

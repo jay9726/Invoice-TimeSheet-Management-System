@@ -49,7 +49,7 @@ const TaskActivityListComponent: React.FC = () => {
             return <Loader />
         } else if (data?.data?.length === 0) {
             return (
-                <div className="flex  justify-center items-center rounded-xl border p-5  text-muted-foreground">
+                <div className="flex  justify-center items-center rounded-xl border p-5  text-muted">
                     No Tasks available for this timesheet.
                 </div>
             )

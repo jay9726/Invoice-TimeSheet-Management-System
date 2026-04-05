@@ -84,7 +84,7 @@ const LoginForm: React.FC = () => {
                 render={({ field, fieldState }) => (
                     <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                            <Label htmlFor="password" className="font-semibold text-gray-700">Password</Label>
+                            <Label htmlFor="password" className="font-semibold">Password</Label>
                             <NavLink to="/forget-password" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
                                 Forgot password?
                             </NavLink>

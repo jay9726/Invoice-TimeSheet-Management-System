@@ -12,10 +12,10 @@ const LoginPage: React.FC = () => {
                         <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary mb-4 font-medium">
                             Welcome Back
                         </div>
-                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-primary">
                             Log in to your account
                         </h1>
-                        <p className="text-base text-muted-foreground">
+                        <p className="text-base text-muted">
                             Enter your credentials below to access your professional dashboard.
                         </p>
                     </div>
