@@ -126,12 +126,6 @@ namespace ITSMS.Persistence.Repositories
                 .OrderByDescending(x => x.BankDetailId)
                 .FirstOrDefaultAsync();
 
-        public Task<List<Project>> GetActiveProjectsByClientIdAsync(Guid clientId)
-            => _db.Projects.AsNoTracking()
-                .Where(x => x.ClientId == clientId && x.IsActive)
-                .OrderBy(x => x.ProjectName)
-                .ToListAsync();
-
 
         public async Task<List<ProjectInvoiceAggRow>> GetProjectAggFromTimeEntryAsync(Guid clientId)
         {
@@ -165,55 +159,12 @@ namespace ITSMS.Persistence.Repositories
         }
 
 
-
-        public async Task<List<(Guid ProjectId, decimal Hours)>> GetBillableHoursByClientProjectAsync(
-            Guid clientId, DateTime from, DateTime to)
-        {
-            var data = await _db.TimeEntries.AsNoTracking()
-                .Where(x =>
-                    x.ClientId == clientId &&
-                    x.IsBillable
-                    )
-                .GroupBy(x => x.ProjectId)
-                .Select(g => new { ProjectId = g.Key, Hours = g.Sum(a => a.HoursWorked) })
-                .ToListAsync();
-
-            return data.Select(x => (x.ProjectId, x.Hours)).ToList();
-        }
-
-
-
         public Task<Invoice?> GetInvoiceByIdAsync(Guid invoiceId)
             => _db.Invoices.AsNoTracking()
                 .Include(x => x.Company)
                 .Include(x => x.Client)
                 .Include(x => x.Items)
                 .FirstOrDefaultAsync(x => x.InvoiceId == invoiceId);
-
-
-
-        public Task<List<Invoice>> GetInvoicesAsync(Guid? companyId, Guid? clientId, InvoiceStatus? status, int page, int pageSize)
-        {
-            var q = _db.Invoices.AsNoTracking()
-                .Include(x => x.Company)
-                .Include(x => x.Client)
-                .OrderByDescending(x => x.InvoiceId)
-                .AsQueryable();
-
-            if (companyId.HasValue) q = q.Where(x => x.CompanyId == companyId.Value);
-            if (clientId.HasValue) q = q.Where(x => x.ClientId == clientId.Value);
-            if (!string.IsNullOrWhiteSpace(status.ToString())) q = q.Where(x => x.Status == status);
-
-            return q.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
-        }
-
-        public async Task<(int totalCount, decimal totalBilled)> GetInvoiceDashboardAsync()
-        {
-            var totalCount = await _db.Invoices.CountAsync();
-            var totalBilled = await _db.Invoices.SumAsync(x => (decimal?)x.TotalAmount) ?? 0m;
-            return (totalCount, totalBilled);
-        }
-
 
 
         public async Task<bool> UpdateInvoiceStatusAsync(Guid invoiceId, InvoiceStatus status)
@@ -277,17 +228,6 @@ namespace ITSMS.Persistence.Repositories
         }
 
 
-        public async Task<Invoice?> GetInvoiceAndPONumber(Guid clientId)
-        {
-            return await _db.Invoices.FirstOrDefaultAsync(x => x.ClientId == clientId);
-        }
-
-
-
-
-
-
-
         public async Task<Guid> CreateInvoiceAsync(Invoice invoice)
         {
             _db.Invoices.Add(invoice);
@@ -340,5 +280,25 @@ namespace ITSMS.Persistence.Repositories
         }
 
 
+        public async Task<List<ProjectInvoiceAggRow>> GetGeneratedInvoiceProjectAsync(Guid invoiceId)
+        {
+            return await _db.InvoiceItems.AsNoTracking()
+                .Where(t => t.InvoiceId == invoiceId)
+                .GroupBy(t => t.ProjectId)
+                .Select(g => new ProjectInvoiceAggRow
+                {
+                    ProjectId = g.Key.ToString(),
+                    TotalHours = g.Sum(x => x.Quantity),
+                    FromDate = g.Min(x => x.FromDate),
+                    ToDate = g.Max(x => x.ToDate)
+                })
+                .ToListAsync();
+        }
+
+
+        public async Task<List<InvoiceItem>> GetGeneratedInvoiceProjectsByIdsAsync(List<string> projectIds)
+           => await _db.InvoiceItems.AsNoTracking()
+               .Where(p => projectIds.Contains(p.ProjectId.ToString()))
+               .ToListAsync();
     }
 }

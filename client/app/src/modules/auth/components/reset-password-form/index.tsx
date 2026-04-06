@@ -30,7 +30,7 @@ const ResetPasswordForm: React.FC = () => {
 
     useEffect(() => {
         if (!email || !token) {
-            // navigate("/", { replace: true })
+            navigate("/", { replace: true })
         }
     }, [email, token])
 

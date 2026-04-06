@@ -27,7 +27,7 @@ const CompanyCard: React.FC<companyType> = (data) => {
                 <div className="flex items-center justify-between mb-4">
                     <div className='flex gap-2'>
                         <img
-                            src={`https://localhost:7273/${data?.data.companyLogo}`}
+                            src={`${import.meta.env.VITE_IMAGE}/${data?.data.companyLogo.replace(/^\/+/, '')}?t=${Date.now()}`}
                             className="h-10 w-10 object-cover rounded-full"
                         />
                         <h3 className="text-lg font-semibold">{data?.data.companyName}</h3>

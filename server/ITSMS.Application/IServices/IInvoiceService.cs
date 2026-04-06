@@ -9,7 +9,7 @@ namespace ITSMS.Application.IServices
 
         Task<APIResponse<List<GetInvoiceCompanyDTO>>> GetCompaniesAsync(string? search);
         Task<APIResponse<List<ClientMiniDto>>> GetClientsByCompanyIdAsync(Guid companyId, int? page, int? limit, string? search);
-        Task<APIResponse<InvoicePreviewResponseDto>> GetInvoicePreviewAsync(Guid clientId, string? invoiceNumber = null, string? PONumber = null);
+        Task<APIResponse<InvoicePreviewResponseDto>> GetInvoicePreviewAsync(Guid invoiceId);
         Task<APIResponse<SubmitInvoiceResponseDto>> GenerateInvoiceAsync(Guid userId, Guid clientId);
         Task<APIResponse<bool>> SubmitInvoiceAsync(Guid invoiceId);
         Task<APIResponse<bool>> UpdateInvoiceStatusAsync(Guid invoiceId, InvoiceStatus status);

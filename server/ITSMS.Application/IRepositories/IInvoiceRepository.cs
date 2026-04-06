@@ -28,16 +28,8 @@ namespace ITSMS.Application.IRepositories
         Task<Client?> GetClientWithCompanyAsync(Guid clientId);
         Task<CompanyBankDetail?> GetActiveBankDetailByCompanyIdAsync(Guid companyId);
 
-        Task<List<Project>> GetActiveProjectsByClientIdAsync(Guid clientId);
-
-        Task<List<(Guid ProjectId, decimal Hours)>> GetBillableHoursByClientProjectAsync(
-            Guid clientId, DateTime from, DateTime to);
 
         Task<Invoice?> GetInvoiceByIdAsync(Guid invoiceId);
-
-        Task<List<Invoice>> GetInvoicesAsync(Guid? companyId, Guid? clientId, InvoiceStatus? status, int page, int pageSize);
-
-        Task<(int totalCount, decimal totalBilled)> GetInvoiceDashboardAsync();
 
         Task<string> GenerateNextInvoiceNumberAsync(DateOnly invoiceDate);
         Task<string> GenerateNextProductOrderNumberAsync(DateOnly orderDate);
@@ -49,12 +41,13 @@ namespace ITSMS.Application.IRepositories
         Task<List<ProjectInvoiceAggRow>> GetProjectAggFromTimeEntryAsync(Guid clientId);
 
 
-        Task<Invoice?> GetInvoiceAndPONumber(Guid clientId);
-
         Task<List<Project>> GetProjectsByIdsAsync(List<string> projectIds);
 
         Task<bool> UpdateInvoiceItemsByProjectsAsync(Guid invoiceId, List<InvoiceProjectPreviewDto> projects);
 
 
+        Task<List<ProjectInvoiceAggRow>> GetGeneratedInvoiceProjectAsync(Guid invoiceId);
+
+        Task<List<InvoiceItem>> GetGeneratedInvoiceProjectsByIdsAsync(List<string> projectIds);
     }
 }

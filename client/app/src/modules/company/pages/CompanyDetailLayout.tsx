@@ -31,7 +31,7 @@ const CompanyDetailLayout: React.FC = () => {
                                 end
                                 className={({ isActive }) =>
                                     cn("group px-3 py-2 text-base font-medium transition-colors duration-200",
-                                        isActive ? "text-primary" : "text-secondary hover:text-primary")
+                                        isActive ? "text-primary" : "hover:text-primary")
                                 }
                             >
                                 {({ isActive }) => (

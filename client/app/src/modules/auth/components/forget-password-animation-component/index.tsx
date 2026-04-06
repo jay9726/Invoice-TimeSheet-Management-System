@@ -2,7 +2,7 @@ import React from 'react'
 
 const ForgetPasswordAnimationComponent: React.FC = () => {
     return (
-        <div className="hidden lg:flex w-1/2 relative bg-primary/5 items-center justify-center overflow-hidden">
+        <div className="hidden lg:flex w-1/2 relative bg-primary/5 dark:bg-primary/10 items-center justify-center overflow-hidden transition-colors duration-500">
             {/* Background Decor lines */}
             <div className="absolute inset-0">
                 <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"></div>
@@ -30,8 +30,8 @@ const ForgetPasswordAnimationComponent: React.FC = () => {
                             <stop offset="100%" stopColor="currentColor" stopOpacity="0.15" />
                         </linearGradient>
                         <linearGradient id="card-grad-fp" x1="0" y1="0" x2="0" y2="100%">
-                            <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-                            <stop offset="100%" stopColor="#f8fafc" stopOpacity="0.95" />
+                            <stop offset="0%" className="text-white dark:text-slate-800" stopColor="currentColor" stopOpacity="1" />
+                            <stop offset="100%" className="text-slate-50 dark:text-slate-900" stopColor="currentColor" stopOpacity="0.95" />
                         </linearGradient>
                         <linearGradient id="primary-grad-fp" x1="0" y1="0" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
@@ -54,8 +54,8 @@ const ForgetPasswordAnimationComponent: React.FC = () => {
 
                     {/* --- App Frame / Background Box --- */}
                     <g filter="url(#shadow-fp)" className="animate-[float_5s_ease-in-out_infinite]">
-                        <rect x="150" y="80" width="500" height="440" rx="24" fill="url(#bg-grad-fp)" stroke="currentColor" strokeWidth="1" className="opacity-80 text-primary" />
-                        <rect x="150" y="80" width="500" height="440" rx="24" fill="white" className="opacity-60" />
+                        <rect x="150" y="80" width="500" height="440" rx="24" fill="url(#bg-grad-fp)" stroke="currentColor" strokeWidth="1" className="opacity-80 text-primary transition-colors duration-500" />
+                        <rect x="150" y="80" width="500" height="440" rx="24" className="fill-white dark:fill-slate-900 opacity-60 dark:opacity-80 transition-colors duration-500" />
 
                         {/* Abstract Header Dots */}
                         <circle cx="180" cy="110" r="6" fill="#ef4444" className="opacity-80" />
@@ -78,8 +78,8 @@ const ForgetPasswordAnimationComponent: React.FC = () => {
                     {/* --- The Envelope (Reset Link) --- */}
                     {/* It floats across and up to symbolize sending */}
                     <g className="animate-[float_6s_ease-in-out_infinite]" style={{ animationDelay: '0s' }} transform="translate(60, 40) rotate(-10 500 350)">
-                        <rect x="460" y="280" width="160" height="110" rx="12" fill="white" filter="url(#shadow-fp)" />
-                        <rect x="460" y="280" width="160" height="110" rx="12" stroke="currentColor" strokeWidth="3" className="text-primary opacity-20" />
+                        <rect x="460" y="280" width="160" height="110" rx="12" className="fill-white dark:fill-slate-800 transition-colors duration-500" filter="url(#shadow-fp)" />
+                        <rect x="460" y="280" width="160" height="110" rx="12" stroke="currentColor" strokeWidth="3" className="text-primary opacity-20 transition-colors duration-500" />
 
                         {/* Envelope Flap */}
                         <path d="M460 280 L540 340 L620 280" stroke="url(#primary-grad-fp)" strokeWidth="4" className="text-primary" strokeLinejoin="round" fill="none" />

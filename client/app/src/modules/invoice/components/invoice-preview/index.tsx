@@ -76,7 +76,7 @@ export const InvoicePreviewA4 = React.forwardRef<HTMLDivElement, { data: Invoice
 
           <img
             crossOrigin="anonymous"
-            src={`https://localhost:7273/${data.company.companyLogo.replace(/^\/+/, '')}?t=${Date.now()}`}
+            src={`${import.meta.env.VITE_IMAGE}/${data.company.companyLogo.replace(/^\/+/, '')}?t=${Date.now()}`}
             alt="logo"
             style={{ width: "120px", objectFit: "contain" }}
           />

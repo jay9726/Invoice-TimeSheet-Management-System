@@ -1,23 +1,3 @@
-// import CreateTaskActivityForm from "../components/create-taskActivity-form";
-
-// const CreateTaskActivityPage = () => {
-//     return (
-//         <div className="w-full flex flex-col gap-2 px-4 ">
-//             <h1 className="text-xl font-bold text-secondary"> Create Work Log </h1>
-
-//             <CreateTaskActivityForm />
-
-//         </div>
-//     )
-// }
-
-// export default CreateTaskActivityPage;
-
-
-
-
-
-
 import { Button } from "@/components/ui/button";
 import CreateTaskActivityForm from "../components/create-taskActivity-form";
 import { useState } from "react";

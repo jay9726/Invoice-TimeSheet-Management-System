@@ -110,51 +110,44 @@ namespace ITSMS.Application.Services
         /// <param name="invoiceNumber"></param>
         /// <param name="PONumber"></param>
         /// <returns></returns>
-        public async Task<APIResponse<InvoicePreviewResponseDto>> GetInvoicePreviewAsync(Guid clientId, string? invoiceNumber = null, string? PONumber = null)
+        public async Task<APIResponse<InvoicePreviewResponseDto>> GetInvoicePreviewAsync(Guid invoiceId)
         {
-            if (clientId == Guid.Empty)
-                return APIResponse<InvoicePreviewResponseDto>.Fail("Invalid client ID");
 
-            var client = await _unitOfWork.InvoiceRepository.GetClientWithCompanyAsync(clientId);
-            if (client == null)
-                return APIResponse<InvoicePreviewResponseDto>.Fail("Client not found");
+            var existinginvoice = await _unitOfWork.InvoiceRepository.GetInvoiceByIdAsync(invoiceId);
 
-            var company = client.Companies;
-            if (company == null)
-                return APIResponse<InvoicePreviewResponseDto>.Fail("Company not found for this client");
+            if (existinginvoice.InvoiceId == Guid.Empty)
+                return APIResponse<InvoicePreviewResponseDto>.Fail("Invoice is not generate");
 
-            var bank = await _unitOfWork.InvoiceRepository.GetActiveBankDetailByCompanyIdAsync(client.CompanyId);
+
+            var bank = await _unitOfWork.InvoiceRepository.GetActiveBankDetailByCompanyIdAsync(existinginvoice.CompanyId);
             if (bank == null)
                 return APIResponse<InvoicePreviewResponseDto>.Fail("Bank details not found for this company");
 
-            var projectPayment = await _unitOfWork.InvoiceRepository.GetPaymentTermsByIdAsync(clientId);
 
-            var invoiceData = await _unitOfWork.InvoiceRepository.GetInvoiceAndPONumber(clientId);
-
-            var agg = await _unitOfWork.InvoiceRepository.GetProjectAggFromTimeEntryAsync(clientId);
+            var agg = await _unitOfWork.InvoiceRepository.GetGeneratedInvoiceProjectAsync(existinginvoice.InvoiceId);
 
             var companyHeader = new CompanyHeaderDto
             {
-                CompanyId = company.CompanyId.ToString(),
-                CompanyName = company.CompanyName,
-                companyLogo = company.CompanyLogo,
-                AddressLine1 = company.AddressLine1,
-                City = company.City,
-                State = company.State,
-                Zip = company.Zip,
-                Country = company.Country
+                CompanyId = existinginvoice.Company.CompanyId.ToString(),
+                CompanyName = existinginvoice.Company.CompanyName,
+                companyLogo = existinginvoice.Company.CompanyLogo,
+                AddressLine1 = existinginvoice.Company.AddressLine1,
+                City = existinginvoice.Company.City,
+                State = existinginvoice.Company.State,
+                Zip = existinginvoice.Company.Zip,
+                Country = existinginvoice.Company.Country
             };
 
             var billTo = new ClientBillToDto
             {
-                ClientId = client.ClientId.ToString(),
-                ClientName = client.ClientName,
-                ContactNumber = client.ContactNumber,
-                AddressLine1 = client.AddressLine1,
-                City = client.City,
-                State = client.State,
-                Zip = client.Zip,
-                Country = client.Country
+                ClientId = existinginvoice.Client.ClientId.ToString(),
+                ClientName = existinginvoice.Client.ClientName,
+                ContactNumber = existinginvoice.Client.ContactNumber,
+                AddressLine1 = existinginvoice.Client.AddressLine1,
+                City = existinginvoice.Client.City,
+                State = existinginvoice.Client.State,
+                Zip = existinginvoice.Client.Zip,
+                Country = existinginvoice.Client.Country
             };
 
             var bankDto = new BankDetailDto
@@ -175,9 +168,8 @@ namespace ITSMS.Application.Services
                     BillTo = billTo,
                     BankDetails = bankDto,
                     Projects = new List<InvoiceProjectPreviewDto>(),
-                    PaymentTerms = projectPayment.PaymentTerms,
-                    InvoiceNumber = invoiceNumber ?? invoiceData.InvoiceNumber,
-                    PONumber = PONumber ?? invoiceData.PONumber,
+                    InvoiceNumber = existinginvoice.InvoiceNumber,
+                    PONumber = existinginvoice.PONumber,
                     TotalAmount = 0
                 };
 
@@ -185,7 +177,7 @@ namespace ITSMS.Application.Services
             }
 
             var projectIds = agg.Select(x => x.ProjectId).Distinct().ToList();
-            var projects = await _unitOfWork.InvoiceRepository.GetProjectsByIdsAsync(projectIds);
+            var projects = await _unitOfWork.InvoiceRepository.GetGeneratedInvoiceProjectsByIdsAsync(projectIds);
 
             var rows = new List<InvoiceProjectPreviewDto>();
 
@@ -197,13 +189,12 @@ namespace ITSMS.Application.Services
                 rows.Add(new InvoiceProjectPreviewDto
                 {
                     ProjectId = p.ProjectId.ToString(),
-                    ProjectName = p.ProjectName,
-                    PaymentTerms = p.PaymentTerms,
+                    ProjectName = p.Description,
                     TotalHours = a.TotalHours,
-                    Rate = p.HourlyRate,
+                    Rate = p.Rate,
                     FromDate = a.FromDate,
                     ToDate = a.ToDate,
-                    Amount = Math.Round(a.TotalHours * p.HourlyRate, 2)
+                    Amount = Math.Round(a.TotalHours * p.Rate, 2)
                 });
             }
 
@@ -213,10 +204,9 @@ namespace ITSMS.Application.Services
                 BillTo = billTo,
                 BankDetails = bankDto,
                 Projects = rows.OrderBy(x => x.ProjectName).ToList(),
-                PaymentTerms = projectPayment.PaymentTerms,
-                InvoiceNumber = invoiceNumber ?? invoiceData.InvoiceNumber,
-                PONumber = PONumber ?? invoiceData.PONumber,
-                TotalAmount = rows.Sum(x => x.Amount)
+                InvoiceNumber = existinginvoice.InvoiceNumber,
+                PONumber = existinginvoice.PONumber,
+                TotalAmount = existinginvoice.TotalAmount
             };
 
             return APIResponse<InvoicePreviewResponseDto>.Ok(preview, "Invoice preview generated");
@@ -248,21 +238,58 @@ namespace ITSMS.Application.Services
                 var invoiceNumber = await _unitOfWork.InvoiceRepository.GenerateNextInvoiceNumberAsync(date);
                 var PONumber = await _unitOfWork.InvoiceRepository.GenerateNextProductOrderNumberAsync(date);
 
-                var previewResponse = await GetInvoicePreviewAsync(clientId, invoiceNumber, PONumber);
-                if (!previewResponse.Success)
-                    return APIResponse<SubmitInvoiceResponseDto>.Fail(previewResponse.Message);
+                var client = await _unitOfWork.InvoiceRepository.GetClientWithCompanyAsync(clientId);
+                if (client == null)
+                    return APIResponse<SubmitInvoiceResponseDto>.Fail("Client not found");
 
-                var invoicePreview = previewResponse.Data!;
+
+                var company = client.Companies;
+                if (company == null)
+                    return APIResponse<SubmitInvoiceResponseDto>.Fail("Company not found for this client");
+
+                var bank = await _unitOfWork.InvoiceRepository.GetActiveBankDetailByCompanyIdAsync(client.CompanyId);
+                if (bank == null)
+                    return APIResponse<SubmitInvoiceResponseDto>.Fail("Bank details not found for this company");
+
+                var projectPayment = await _unitOfWork.InvoiceRepository.GetPaymentTermsByIdAsync(clientId);
+
+                var agg = await _unitOfWork.InvoiceRepository.GetProjectAggFromTimeEntryAsync(clientId);
+
+
+                var projectIds = agg.Select(x => x.ProjectId).Distinct().ToList();
+                var projects = await _unitOfWork.InvoiceRepository.GetProjectsByIdsAsync(projectIds);
+
+                var rows = new List<InvoiceProjectPreviewDto>();
+
+                foreach (var a in agg)
+                {
+                    var p = projects.FirstOrDefault(x => x.ProjectId == Guid.Parse(a.ProjectId));
+                    if (p == null) continue;
+
+                    rows.Add(new InvoiceProjectPreviewDto
+                    {
+                        ProjectId = p.ProjectId.ToString(),
+                        ProjectName = p.ProjectName,
+                        PaymentTerms = p.PaymentTerms,
+                        TotalHours = a.TotalHours,
+                        Rate = p.HourlyRate,
+                        FromDate = a.FromDate,
+                        ToDate = a.ToDate,
+                        Amount = Math.Round(a.TotalHours * p.HourlyRate, 2)
+                    });
+                }
+
+
 
                 var invoice = new Invoice
                 {
                     InvoiceNumber = invoiceNumber,
-                    CompanyId = Guid.Parse(invoicePreview.Company.CompanyId),
-                    ClientId = Guid.Parse(invoicePreview.BillTo.ClientId),
+                    CompanyId = company.CompanyId,
+                    ClientId = client.ClientId,
                     InvoiceDate = date,
-                    PaymentTerms = invoicePreview.PaymentTerms,
+                    PaymentTerms = projectPayment.PaymentTerms,
                     PONumber = PONumber,
-                    TotalAmount = invoicePreview.TotalAmount,
+                    TotalAmount = rows.Sum(x => x.Amount),
                     Status = InvoiceStatus.DRAFT,
                     CreatedDate = date,
                     CreatedBy = userId,
@@ -270,7 +297,7 @@ namespace ITSMS.Application.Services
 
                 var invoiceId = await _unitOfWork.InvoiceRepository.CreateInvoiceAsync(invoice);
 
-                var entityItems = invoicePreview.Projects.Select(p => new InvoiceItem
+                var entityItems = rows.OrderBy(x => x.ProjectName).ToList().Select(p => new InvoiceItem
                 {
                     InvoiceId = invoiceId,
                     ProjectId = Guid.Parse(p.ProjectId),
@@ -298,18 +325,45 @@ namespace ITSMS.Application.Services
             }
 
 
-            var existingPreviewResponse = await GetInvoicePreviewAsync(clientId);
-            if (!existingPreviewResponse.Success)
-                return APIResponse<SubmitInvoiceResponseDto>.Fail(existingPreviewResponse.Message);
+            var notexistinginvoiceagg = await _unitOfWork.InvoiceRepository.GetProjectAggFromTimeEntryAsync(clientId);
 
-            var existingPreview = existingPreviewResponse.Data!;
+
+            var notexistinginvoiceprojectIds = notexistinginvoiceagg.Select(x => x.ProjectId).Distinct().ToList();
+            var notexistinginvoiceprojects = await _unitOfWork.InvoiceRepository.GetProjectsByIdsAsync(notexistinginvoiceprojectIds);
+
+            var notexistinginvoicerows = new List<InvoiceProjectPreviewDto>();
+
+            foreach (var a in notexistinginvoiceagg)
+            {
+                var p = notexistinginvoiceprojects.FirstOrDefault(x => x.ProjectId == Guid.Parse(a.ProjectId));
+                if (p == null) continue;
+
+                notexistinginvoicerows.Add(new InvoiceProjectPreviewDto
+                {
+                    ProjectId = p.ProjectId.ToString(),
+                    ProjectName = p.ProjectName,
+                    PaymentTerms = p.PaymentTerms,
+                    TotalHours = a.TotalHours,
+                    Rate = p.HourlyRate,
+                    FromDate = a.FromDate,
+                    ToDate = a.ToDate,
+                    Amount = Math.Round(a.TotalHours * p.HourlyRate, 2)
+                });
+            }
+
+
+
+
+
+
+
             var existingProjectIds = await _unitOfWork.InvoiceRepository.GetInvoiceItemProjectIdsAsync(existing.InvoiceId);
 
-            var newProjects = existingPreview.Projects
+            var newProjects = notexistinginvoicerows.OrderBy(x => x.ProjectName).ToList()
                .Where(p => !existingProjectIds.Contains(Guid.Parse(p.ProjectId)))
                .ToList();
 
-            var updatedProjects = existingPreview.Projects
+            var updatedProjects = notexistinginvoicerows.OrderBy(x => x.ProjectName).ToList()
                 .Where(p => existingProjectIds.Contains(Guid.Parse(p.ProjectId)))
                 .ToList();
 
@@ -337,14 +391,14 @@ namespace ITSMS.Application.Services
                     existing.InvoiceId, updatedProjects);
             }
 
-            await _unitOfWork.InvoiceRepository.UpdateInvoiceTotalAsync(existing.InvoiceId, existingPreview.TotalAmount);
+            await _unitOfWork.InvoiceRepository.UpdateInvoiceTotalAsync(existing.InvoiceId, notexistinginvoicerows.Sum(x => x.Amount));
 
             var result = new SubmitInvoiceResponseDto
             {
                 IsCreated = true,
                 InvoiceId = existing.InvoiceId.ToString(),
                 InvoiceNumber = existing.InvoiceNumber,
-                TotalAmount = existingPreview.TotalAmount,
+                TotalAmount = notexistinginvoicerows.Sum(x => x.Amount),
                 Status = existing.Status.ToString()
             };
 

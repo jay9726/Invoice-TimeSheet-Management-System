@@ -60,9 +60,9 @@ namespace ITSMS.API.Controllers
 
         [Authorize(Roles = "Admin,AccountUser")]
         [HttpGet("preview")]
-        public async Task<IActionResult> Preview([FromQuery] Guid clientId)
+        public async Task<IActionResult> Preview([FromQuery] Guid invoiceId)
         {
-            var result = await _service.GetInvoicePreviewAsync(clientId);
+            var result = await _service.GetInvoicePreviewAsync(invoiceId);
             return result.Success ? Ok(result) : NotFound(result);
         }
 

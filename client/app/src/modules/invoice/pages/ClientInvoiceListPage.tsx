@@ -128,6 +128,7 @@ const ClientInvoiceListPage: React.FC = () => {
         }
     }
 
+
     return (
         <div className='flex flex-col gap-5'>
             <div className='flex justify-between items-center'>

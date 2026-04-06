@@ -2,7 +2,7 @@ import React from 'react'
 
 const ResetPasswordAnimationComponent: React.FC = () => {
     return (
-        <div className="hidden lg:flex w-1/2 relative bg-primary/5 items-center justify-center overflow-hidden">
+        <div className="hidden lg:flex w-1/2 relative bg-primary/5 dark:bg-primary/10 items-center justify-center overflow-hidden transition-colors duration-500">
             {/* Background Decor lines */}
             <div className="absolute inset-0">
                 <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"></div>
@@ -30,8 +30,8 @@ const ResetPasswordAnimationComponent: React.FC = () => {
                             <stop offset="100%" stopColor="currentColor" stopOpacity="0.15" />
                         </linearGradient>
                         <linearGradient id="card-grad-rp" x1="0" y1="0" x2="0" y2="100%">
-                            <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-                            <stop offset="100%" stopColor="#f8fafc" stopOpacity="0.95" />
+                            <stop offset="0%" className="text-white dark:text-slate-800" stopColor="currentColor" stopOpacity="1" />
+                            <stop offset="100%" className="text-slate-50 dark:text-slate-900" stopColor="currentColor" stopOpacity="0.95" />
                         </linearGradient>
                         <linearGradient id="primary-grad-rp" x1="0" y1="0" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
@@ -55,8 +55,8 @@ const ResetPasswordAnimationComponent: React.FC = () => {
                     {/* --- The Safe Box / Secure Server Container --- */}
                     {/* Floating gently to represent secure cloud storage */}
                     <g filter="url(#shadow-rp)" className="animate-[float_5s_ease-in-out_infinite]">
-                        <rect x="220" y="120" width="360" height="360" rx="32" fill="url(#bg-grad-rp)" stroke="currentColor" strokeWidth="1" className="opacity-80 text-primary" />
-                        <rect x="220" y="120" width="360" height="360" rx="32" fill="url(#card-grad-rp)" className="opacity-80" />
+                        <rect x="220" y="120" width="360" height="360" rx="32" fill="url(#bg-grad-rp)" stroke="currentColor" strokeWidth="1" className="opacity-80 text-primary transition-colors duration-500" />
+                        <rect x="220" y="120" width="360" height="360" rx="32" fill="url(#card-grad-rp)" className="opacity-80 transition-colors duration-500" />
 
                         {/* Safe Details / Server Lights */}
                         <rect x="250" y="150" width="300" height="300" rx="20" stroke="url(#primary-grad-rp)" strokeWidth="4" fill="none" className="text-primary opacity-30" />
@@ -74,7 +74,7 @@ const ResetPasswordAnimationComponent: React.FC = () => {
                     {/* --- The Key (Authorization) --- */}
                     {/* Translating in independently to imply 'unlocking/resetting' */}
                     <g className="animate-[float_4s_ease-in-out_infinite]" style={{ animationDelay: '0.4s' }} transform="translate(40, -20) rotate(15 400 300)">
-                        <ellipse cx="330" cy="320" rx="35" ry="35" fill="white" filter="url(#shadow-rp)" />
+                        <ellipse cx="330" cy="320" rx="35" ry="35" className="fill-white dark:fill-slate-800 transition-colors duration-500" filter="url(#shadow-rp)" />
                         <ellipse cx="330" cy="320" rx="35" ry="35" stroke="url(#primary-grad-rp)" strokeWidth="12" fill="none" className="text-primary" />
 
                         <path d="M 365 320 L 490 320" stroke="url(#primary-grad-rp)" strokeWidth="14" strokeLinecap="round" className="text-primary" filter="url(#shadow-rp)" />

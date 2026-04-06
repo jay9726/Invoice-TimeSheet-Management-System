@@ -112,7 +112,7 @@ const CompanyTable: React.FC<companyTableProps> = ({ data, emptyText = "No recor
                                         <TableCell className="p-4 text-center text-sm">
                                             <div className="flex gap-2 justify-start items-center">
                                                 <img
-                                                    src={`https://localhost:7273/${c.companyLogo}`}
+                                                    src={`${import.meta.env.VITE_IMAGE}/${c.companyLogo.replace(/^\/+/, '')}?t=${Date.now()}`}
                                                     alt="logo"
                                                     className="h-10 w-10 object-cover rounded-full"
                                                 />

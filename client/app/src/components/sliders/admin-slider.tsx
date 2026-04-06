@@ -1,105 +1,3 @@
-// import * as React from "react"
-// import { NavLink } from "react-router-dom"
-// import { cn } from "@/lib/utils"
-// import { Sidebar, SidebarMenu, SidebarMenuItem, SidebarFooter, SidebarHeader, SidebarContent } from "@/components/ui/sidebar"
-// import { LayoutDashboard, Building2, Building, FolderKanban, Users, User2, LogOut, ListCheck } from "lucide-react"
-
-// const navlinks = [
-//   { to: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
-//   { to: "/admin/companies", label: "Companies", icon: Building2 },
-//   { to: "/admin/bankdetails", label: "Bank Accounts", icon: Building },
-//   { to: "/admin/clients", label: "Clients", icon: User2 },
-//   { to: "/admin/projects", label: "Projects", icon: FolderKanban },
-//   { to: "/admin/users", label: "Users", icon: Users },
-//   { to: "/admin/invoices", label: "Invoices", icon: ListCheck },
-// ]
-
-// type AdminSidebarProps = React.ComponentProps<typeof Sidebar> & {
-//   user?: {
-//     name: string
-//     email?: string
-//     avatarUrl?: string
-//   }
-//   onLogout?: () => void
-// }
-
-// export function AdminSidebar({
-//   user = {
-//     name: "Admin User",
-//     email: "admin@company.com",
-//     avatarUrl: "",
-//   },
-//   onLogout,
-//   ...props
-// }: AdminSidebarProps) {
-//   return (
-//     <Sidebar {...props}>
-//       <SidebarHeader className="bg-white">
-//         <div className="px-3 py-5 flex items-center justify-center">
-//           <img src="/CS-Logo.svg" alt="logo" />
-//         </div>
-//       </SidebarHeader>
-
-//       <SidebarContent className="bg-white">
-//         <SidebarMenu className="mt-3 px-2">
-//           {navlinks.map((link) => {
-//             const Icon = link.icon
-
-//             return (
-//               <SidebarMenuItem key={link.to} className="mt-1">
-//                 <NavLink
-//                   to={link.to}
-//                   end={link.to === "/admin"}
-//                   className={({ isActive }) =>
-//                     cn(
-//                       "group/nav flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium transition-all duration-200 ",
-//                       isActive
-//                         ? "bg-primary/10 text-primary shadow-sm ring-1 ring-primary/20 before:absolute before:left-0 before:top-1/2 before:h-6 before:w-1 before:-translate-y-1/2 before:rounded-r before:bg-primary"
-//                         : "text-secondary hover:bg-secondary/80 hover:text-white"
-//                     )
-//                   }
-//                 >
-//                   {({ isActive }) => (
-//                     <>
-//                       <Icon
-//                         className={cn(
-//                           "h-5 w-5 transition-all duration-200",
-//                           isActive ? "text-primary" : "text-secondary group-hover/nav:text-white"
-//                         )}
-//                       />
-//                       <span>{link.label}</span>
-//                     </>
-//                   )}
-//                 </NavLink>
-
-//               </SidebarMenuItem>
-//             )
-//           })}
-//         </SidebarMenu>
-//       </SidebarContent>
-
-//       <SidebarFooter className="mt-auto  bg-white border-t">
-//         {/* Logout button */}
-//         <button
-//           type="button"
-//           onClick={onLogout}
-//           className={cn(
-//             "w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
-//             "text-destructive hover:bg-destructive/10 hover:text-destructive"
-//           )}
-//         >
-//           <LogOut className="h-5 w-5 transition-colors text-destructive group-hover:text-destructive" />
-//           <span>Logout</span>
-//         </button>
-//       </SidebarFooter>
-//     </Sidebar>
-//   )
-// }
-
-
-
-
-
 import * as React from "react"
 import { NavUser } from "@/components/nav-user"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarSeparator, useSidebar } from "@/components/ui/sidebar"
@@ -108,7 +6,7 @@ import { logoutUser } from "@/redux/slices/authSlice"
 import { useAppDispatch } from "@/lib/hooks"
 
 import type { mergeIcon } from "../icon"
-import { Avatar, AvatarImage } from "../ui/avatar"
+import { Avatar} from "../ui/avatar"
 import SidebarNavLink from "../sidebar-nav-links"
 import { useGetEmployeeById } from "@/modules/user/apis/queries"
 import { SessionAuthentication } from "@/modules/auth/guards/SessisonAuthentication"
@@ -189,16 +87,11 @@ export function AdminSlider({ ...props }: React.ComponentProps<typeof Sidebar>) 
       <SidebarHeader className="flex justify-center items-center">
         <Avatar
           className={cn(
-            "rounded-none",
-            state === "collapsed" ? "h-6 w-6" : "h-17 w-full"
+            "rounded-none flex items-center justify-center transition-all duration-200",
+            state === "collapsed" ? "hidden" : "h-full w-full"
           )}
         >
-          {
-            state === "collapsed" ? (
-              <AvatarImage src="/metalogo.png" alt="ITSMS Logo" />
-            ) :
-              <AvatarImage src="/logo.png" alt="ITSMS Logo" />
-          }
+          {state !== "collapsed" && <h1 className="font-bold text-4xl text-primary">ITSMS</h1>}
         </Avatar>
       </SidebarHeader>
 

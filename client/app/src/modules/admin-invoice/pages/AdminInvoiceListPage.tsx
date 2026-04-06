@@ -56,8 +56,8 @@ const AdminInvoiceListPage: React.FC = () => {
 
     const { mutate, isPending: isPreviewing } = useInvoicePreview()
 
-    const previewInvoice = (clientId: string, clientName: string) => {
-        mutate({ clientId: clientId }, {
+    const previewInvoice = (invoiceId: string, clientName: string) => {
+        mutate({ invoiceId: invoiceId }, {
             onSuccess: async (res: any) => {
                 const invoiceData: InvoicePreviewResponse = res.data
                 setIsGeneratingPdf(true)
@@ -135,7 +135,7 @@ const AdminInvoiceListPage: React.FC = () => {
                     </TableCell>
                     <TableCell className="p-4 text-center text-sm">
                         <ToolTips children={
-                            <Button variant='ghost' onClick={() => previewInvoice(c.clientId, c.clientName)}>
+                            <Button variant='ghost' onClick={() => previewInvoice(c.invoiceId, c.clientName)}>
                                 {
                                     isGeneratingPdf || isPreviewing ? <span className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" /> :
                                         <EyeIcon className="w-5 h-5 text-primary" />

@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import { getAllCompaniesForInvoiceApi, getClientByCompanyIdApi, getInvoicePreviewByClientIdApi } from "./api"
+import { getAllCompaniesForInvoiceApi, getClientByCompanyIdApi, getInvoicePreviewByinvoiceIdApi } from "./api"
 
 
 
@@ -22,10 +22,10 @@ export const useGetClientByCompanyId = (companyId: string, page?: number, limit?
 };
 
 
-export const useGetInvoicePreviewByClientId = (clientId: string) => {
+export const useGetInvoicePreviewByinvoiceId = (invoiceId: string) => {
     return useQuery({
-        queryKey: ['get-invoice-preview-by-client-id', clientId],
-        queryFn: () => getInvoicePreviewByClientIdApi(clientId),
+        queryKey: ['get-invoice-preview-by-invoice-id', invoiceId],
+        queryFn: () => getInvoicePreviewByinvoiceIdApi(invoiceId),
         placeholderData: keepPreviousData,
         retry: false,
     })

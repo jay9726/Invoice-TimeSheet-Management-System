@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetInvoicePreviewByClientId } from '../apis/queries';
+import { useGetInvoicePreviewByinvoiceId } from '../apis/queries';
 import Loader from '@/components/loader';
 import { InvoicePreviewA4 } from '../components/invoice-preview';
 import { Button } from '@/components/ui/button';
@@ -29,10 +29,10 @@ export type createInvoiceType = {
 
 const InvoicePreviewPage: React.FC = () => {
 
-    const { id, invoiceId } = useParams();
+    const {invoiceId } = useParams();
     const navigate = useNavigate();
     const toast = useToast();
-    const { data, isPending } = useGetInvoicePreviewByClientId(id as string)
+    const { data, isPending } = useGetInvoicePreviewByinvoiceId(invoiceId as string)
 
     const { mutate: submitInvoice, isPending: isSubmittiingInvoice } = useSubmitInvoice()
 
@@ -46,6 +46,7 @@ const InvoicePreviewPage: React.FC = () => {
     }
 
     if (isPending || isSubmittiingInvoice) return <Loader />
+  
     return (
         <div className='flex flex-col gap-2'>
             <InvoicePreviewA4 data={data?.data} />

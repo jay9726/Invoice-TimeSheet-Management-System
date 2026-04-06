@@ -2,7 +2,7 @@ import React from 'react'
 
 const LoginAnimationComponent: React.FC = () => {
     return (
-        <div className="hidden lg:flex w-1/2 relative bg-primary/5 items-center justify-center overflow-hidden">
+        <div className="hidden lg:flex w-1/2 relative bg-primary/5 dark:bg-primary/10 items-center justify-center overflow-hidden transition-colors duration-500">
             {/* Background Decor lines */}
             <div className="absolute inset-0">
                 <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent"></div>
@@ -29,8 +29,8 @@ const LoginAnimationComponent: React.FC = () => {
                             <stop offset="100%" stopColor="currentColor" stopOpacity="0.15" />
                         </linearGradient>
                         <linearGradient id="card-grad1" x1="0" y1="0" x2="0" y2="100%">
-                            <stop offset="0%" stopColor="#ffffff" stopOpacity="1" />
-                            <stop offset="100%" stopColor="#f8fafc" stopOpacity="0.9" />
+                            <stop offset="0%" className="text-white dark:text-slate-800" stopColor="currentColor" stopOpacity="1" />
+                            <stop offset="100%" className="text-slate-50 dark:text-slate-900" stopColor="currentColor" stopOpacity="0.9" />
                         </linearGradient>
                         <linearGradient id="primary-grad" x1="0" y1="0" x2="100%" y2="100%">
                             <stop offset="0%" stopColor="currentColor" stopOpacity="0.8" />
@@ -48,16 +48,16 @@ const LoginAnimationComponent: React.FC = () => {
                     </defs>
 
                     {/* Behind-Scenes Floating Blobs for Atmosphere */}
-                    <circle cx="200" cy="150" r="100" fill="currentColor" className="opacity-10 animate-[pulse_6s_ease-in-out_infinite]" />
-                    <circle cx="650" cy="450" r="150" fill="currentColor" className="opacity-10 animate-[pulse_8s_ease-in-out_infinite]" />
+                    <circle cx="200" cy="150" r="100" fill="currentColor" className="opacity-10 animate-[pulse_6s_ease-in-out_infinite] text-primary dark:text-primary/50 transition-colors duration-500" />
+                    <circle cx="650" cy="450" r="150" fill="currentColor" className="opacity-10 animate-[pulse_8s_ease-in-out_infinite] text-primary dark:text-primary/50 transition-colors duration-500" />
 
                     {/* --- App Frame / Container --- */}
                     <g filter="url(#shadow)" className="animate-[float_5s_ease-in-out_infinite]">
                         <rect x="60" y="60" width="680" height="480" rx="20" fill="url(#bg-grad)" stroke="currentColor" strokeWidth="1" className="opacity-80 text-primary" />
-                        <rect x="60" y="60" width="680" height="480" rx="20" fill="white" className="opacity-50" />
+                        <rect x="60" y="60" width="680" height="480" rx="20" className="fill-white dark:fill-slate-900 opacity-50 dark:opacity-80 transition-colors duration-500" />
 
                         {/* Top Navbar */}
-                        <rect x="60" y="60" width="680" height="50" rx="20" fill="white" className="opacity-90" />
+                        <rect x="60" y="60" width="680" height="50" rx="20" className="fill-white dark:fill-slate-800 opacity-90 transition-colors duration-500" />
                         <rect x="60" y="110" width="680" height="1" fill="currentColor" className="opacity-10 text-primary" />
 
                         {/* Nav Items */}
@@ -95,14 +95,14 @@ const LoginAnimationComponent: React.FC = () => {
 
                     {/* Floating Invoice Popup */}
                     <g className="animate-[float_6s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }}>
-                        <rect x="490" y="100" width="230" height="300" rx="16" fill="white" filter="url(#shadow)" />
+                        <rect x="490" y="100" width="230" height="300" rx="16" className="fill-white dark:fill-slate-800 transition-colors duration-500" filter="url(#shadow)" />
                         {/* Invoice Header */}
-                        <rect x="510" y="120" width="80" height="30" rx="6" fill="url(#primary-grad)" className="text-primary opacity-90" />
+                        <rect x="510" y="120" width="80" height="30" rx="6" fill="url(#primary-grad)" className="text-primary opacity-90 transition-colors duration-500" />
                         <rect x="660" y="125" width="40" height="20" rx="10" fill="#10b981" className="opacity-20" />
                         <circle cx="668" cy="135" r="4" fill="#10b981" />
 
                         {/* Invoice Items with staggered entering animation feel */}
-                        <g className="opacity-70 text-gray-500">
+                        <g className="opacity-70 text-gray-500 dark:text-gray-400 transition-colors duration-500">
                             <rect x="510" y="180" width="120" height="12" rx="4" fill="currentColor" />
                             <rect x="670" y="180" width="30" height="12" rx="4" fill="currentColor" />
 
@@ -113,7 +113,7 @@ const LoginAnimationComponent: React.FC = () => {
                             <rect x="670" y="240" width="30" height="12" rx="4" fill="currentColor" />
                         </g>
 
-                        <line x1="510" y1="280" x2="700" y2="280" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" className="opacity-20 text-primary" />
+                        <line x1="510" y1="280" x2="700" y2="280" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" className="opacity-20 text-primary transition-colors duration-500" />
                         {/* Total strong highlight */}
                         <rect x="640" y="300" width="60" height="24" rx="6" fill="currentColor" className="opacity-10 text-primary" />
                         <rect x="650" y="308" width="40" height="8" rx="4" fill="url(#primary-grad)" className="text-primary" />

@@ -20,7 +20,7 @@ const CompanyDetailsPage: React.FC = () => {
 
                 <div className="flex items-center justify-between mb-4">
                     <img
-                        src={`https://localhost:7273/${data?.data.companyLogo}`}
+                        src={`${import.meta.env.VITE_IMAGE}/${data?.data.companyLogo.replace(/^\/+/, '')}?t=${Date.now()}`}
                         alt="logo"
                         className="h-10 w-10 object-cover rounded-full"
                     />

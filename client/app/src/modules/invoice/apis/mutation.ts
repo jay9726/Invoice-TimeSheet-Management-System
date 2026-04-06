@@ -1,6 +1,6 @@
 import type { ApiResponse } from "@/types/api";
 import { useMutation, useQueryClient, type UseMutationOptions } from "@tanstack/react-query";
-import { getInvoicePreviewByClientIdApi, generateInvoiceApi, submitInvoiceApi } from "./api";
+import { generateInvoiceApi, submitInvoiceApi, getInvoicePreviewByinvoiceIdApi } from "./api";
 
 
 export const useGenerateInvoice = (
@@ -39,13 +39,13 @@ export const useSubmitInvoice = (
 
 export const useInvoicePreview = (
     options?: UseMutationOptions<
-        any, Error, { clientId: string }>
+        any, Error, { invoiceId: string }>
 ) => {
     const queryClient = useQueryClient();
 
     return useMutation({
         mutationKey: ['preview-invoice'],
-        mutationFn: ({ clientId }) => getInvoicePreviewByClientIdApi(clientId),
+        mutationFn: ({ invoiceId }) => getInvoicePreviewByinvoiceIdApi(invoiceId),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['preview-invoice'] })
         },

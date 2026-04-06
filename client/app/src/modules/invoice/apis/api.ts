@@ -18,8 +18,8 @@ export const getClientByCompanyIdApi = async (companyId: string, page?: number, 
 };
 
 
-export const getInvoicePreviewByClientIdApi = async (clientId: string) => {
-    const res = await api.get(`/Invoice/preview?clientId=${clientId}`);
+export const getInvoicePreviewByinvoiceIdApi = async (invoiceId: string) => {
+    const res = await api.get(`/Invoice/preview?invoiceId=${invoiceId}`);
     return res.data;
 }
 

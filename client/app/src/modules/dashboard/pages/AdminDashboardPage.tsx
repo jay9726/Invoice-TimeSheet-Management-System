@@ -15,7 +15,7 @@ const AdminDashboardPage = () => {
             <div className="space-y-8 p-2">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight text-secondary">System Overview</h1>
+                        <h1 className="text-2xl font-bold tracking-tight">System Overview</h1>
                         <p className="text-muted-foreground text-sm">Real-time performance and master data summary.</p>
                     </div>
 
@@ -61,7 +61,7 @@ const AdminDashboardPage = () => {
 const KPICard = ({ title, value, icon: Icon }: any) => (
     <Card className="hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border-l-4 border-l-primary">
         <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
+            <CardTitle className="text-sm font-medium ">{title}</CardTitle>
             <Icon className="h-4 w-4 text-primary" />
         </CardHeader>
         <CardContent>
@@ -75,7 +75,7 @@ const StatusMetric = ({ label, value, color }: any) => (
         <span className="text-2xl font-bold">{value}</span>
         <div className="flex items-center gap-1.5">
             <div className={`h-2 w-2 rounded-full ${color}`} />
-            <span className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold">{label}</span>
+            <span className="text-[11px] uppercase tracking-wider font-semibold">{label}</span>
         </div>
     </div>
 )

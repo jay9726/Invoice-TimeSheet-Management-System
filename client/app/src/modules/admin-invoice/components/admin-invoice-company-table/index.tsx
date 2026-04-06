@@ -63,7 +63,7 @@ const AdminInvoiceCompanyTable: React.FC<adminInvoiceCompanyProps> = ({ data, em
                                         <TableCell className="p-4 text-center text-sm">
                                             <div className='flex gap-2 items-center'>
                                                 <img
-                                                    src={`https://localhost:7273/${c.companyLogo}`}
+                                                    src={`${import.meta.env.VITE_IMAGE}/${c.companyLogo.replace(/^\/+/, '')}?t=${Date.now()}`}
 
                                                     className="h-10 w-10 object-cover rounded-full"
                                                 />
